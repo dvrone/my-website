@@ -3,170 +3,393 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Diyorbek Q.</title>
+    <title>Diyorbek Q. — Backend Developer</title>
 
     <!-- SEO -->
     <meta
       name="description"
-      content="Diyorbek Q. — 20-year-old cybersecurity student from Uzbekistan. Focused on web apps, backend systems, and Telegram bots."
+      content="Diyorbek Q. — Backend developer from Uzbekistan building secure web apps & Telegram bots with Python, Django, and Aiogram."
     />
     <meta
       name="keywords"
-      content="Diyorbek, Python, Django, Flask, Telegram bot, Aiogram, backend, cybersecurity, Uzbekistan"
+      content="Diyorbek, Python, Django, Flask, Telegram bot, Aiogram, backend, cybersecurity"
     />
     <meta name="author" content="Diyorbek Q." />
 
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="Diyorbek Q. — Backend Developer" />
+    <meta
+      property="og:description"
+      content="Building secure web apps & Telegram bots with Python, Django, and Aiogram."
+    />
+    <meta property="og:type" content="website" />
 
-    <!-- Bootstrap -->
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="any" />
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.8/lux/bootstrap.min.css"
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Icons -->
+    <!-- Bootstrap Icons only — no full Bootstrap framework needed -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
 
-    <!-- Font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap"
-      rel="stylesheet"
-    />
-
     <style>
+      /* ── Reset & tokens ─────────────────────────────── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0b0b0b;
+        --surface: #111111;
+        --border: #222222;
+        --text: #eaffea;
+        --muted: #7a8c7a;
+        --accent: #7cfc00;
+        --accent-h: #aaff00;
+        --radius: 6px;
+      }
+
+      /* ── Base ───────────────────────────────────────── */
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         font-family: "Courier Prime", monospace;
-        background: #0b0b0b;
-        color: #eaffea;
-      }
-
-      .text-accent {
-        color: #7cfc00;
-      }
-
-      .btn-accent {
-        background: #7cfc00;
-        color: black;
-        font-weight: bold;
-        border: none;
-      }
-
-      .btn-accent:hover {
-        background: #aaff00;
-      }
-
-      .card {
-        background: #111;
-        border: 1px solid #2a2a2a;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100dvh;
+        display: flex;
+        justify-content: center;
+        padding: 2.5rem 1rem 3rem;
       }
 
       a {
         text-decoration: none;
+        color: inherit;
+      }
+
+      /* ── Layout ─────────────────────────────────────── */
+      .page {
+        width: 100%;
+        max-width: 420px;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      /* ── Header ─────────────────────────────────────── */
+      .header {
+        text-align: center;
+      }
+
+      .name {
+        font-size: clamp(1.6rem, 5vw, 2rem);
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: 0.03em;
+      }
+
+      .tagline {
+        margin-top: 0.35rem;
+        font-size: 0.8rem;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .status {
+        margin-top: 0.75rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      /* Pulsing green dot */
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        flex-shrink: 0;
+        animation: pulse 2.4s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scale(0.7);
+        }
+      }
+
+      /* ── Bio ────────────────────────────────────────── */
+      .bio {
+        font-size: 0.875rem;
+        color: var(--muted);
+        line-height: 1.75;
+        text-align: center;
+      }
+
+      /* ── Card ───────────────────────────────────────── */
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 0.9rem 1rem;
+      }
+
+      /* ── Links grid ─────────────────────────────────── */
+      .links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+      }
+
+      /* ── Button ─────────────────────────────────────── */
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        padding: 0.6rem 0.75rem;
+        border-radius: var(--radius);
+        font-family: inherit;
+        font-size: 0.85rem;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+        transition:
+          background 0.15s,
+          color 0.15s,
+          border-color 0.15s,
+          transform 0.1s;
+        white-space: nowrap;
+      }
+
+      .btn:active {
+        transform: scale(0.97);
+      }
+
+      .btn-accent {
+        background: var(--accent);
+        color: #000;
+      }
+
+      .btn-accent:hover {
+        background: var(--accent-h);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+
+      .btn-ghost:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      /* Focus ring for keyboard navigation */
+      .btn:focus-visible,
+      a:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: var(--radius);
+      }
+
+      /* ── Project card ───────────────────────────────── */
+      .project-label {
+        font-size: 0.7rem;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.6rem;
+      }
+
+      .project-title {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+      }
+
+      .project-desc {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-bottom: 0.65rem;
+        line-height: 1.5;
+      }
+
+      .project-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .tag {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.55rem;
+        border-radius: 999px;
+        background: #1a2a0a;
+        color: var(--accent);
+        border: 1px solid #2a4010;
+      }
+
+      .project-link {
+        font-size: 0.8rem;
+        color: var(--accent);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        transition: gap 0.15s;
+      }
+
+      .project-link:hover {
+        gap: 0.55rem;
+      }
+
+      /* ── Footer ─────────────────────────────────────── */
+      .footer {
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+
+      /* ── Entrance animation ─────────────────────────── */
+      @media (prefers-reduced-motion: no-preference) {
+        .page > * {
+          opacity: 0;
+          transform: translateY(12px);
+          animation: fadein 0.4s ease forwards;
+        }
+
+        .page > *:nth-child(1) {
+          animation-delay: 0.05s;
+        }
+        .page > *:nth-child(2) {
+          animation-delay: 0.1s;
+        }
+        .page > *:nth-child(3) {
+          animation-delay: 0.15s;
+        }
+        .page > *:nth-child(4) {
+          animation-delay: 0.2s;
+        }
+        .page > *:nth-child(5) {
+          animation-delay: 0.25s;
+        }
+
+        @keyframes fadein {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
       }
     </style>
   </head>
-
-  <body class="d-flex justify-content-center">
-    <div class="container py-4 text-center" style="max-width: 420px">
-      <!-- Name -->
-      <h1 class="text-accent mb-1">Diyorbek Q.</h1>
+  <body>
+    <main class="page" aria-label="Diyorbek Q. personal site">
+      <!-- Header -->
+      <header class="header">
+        <h1 class="name">Diyorbek Q.</h1>
+        <p class="tagline">Python · Django · Backend · Telegram Bots</p>
+        <p class="status">
+          <span class="dot" aria-hidden="true"></span>
+          Building secure web apps &amp; bots
+        </p>
+      </header>
 
       <!-- Bio -->
-      <div class="text-secondary mb-2">
-        Python &bull; Django &bull; Backend &bull; Telegram Bots
-      </div>
-
-      <!-- Status -->
-      <div class="mb-3">
-        <i class="bi bi-circle-fill text-accent me-1"></i>
-        Building secure web apps &amp; bots
-      </div>
-
-      <!-- About -->
-      <p class="text-secondary mb-4">
-        20-year-old cybersecurity student from Uzbekistan.<br />
-        Focused on building web applications, backend systems, and Telegram
-        bots.<br />
-        Interested in secure & scalable software architecture.<br />
-        Continuously improving through real-world projects & hands-on learning.
+      <p class="bio">
+        Focused on web applications, backend systems, and Telegram bots.<br />
+        Interested in secure &amp; scalable software architecture.<br />
+        Continuously improving through real-world projects.
       </p>
 
-      <!-- Main CTA -->
-      <a
-        href="https://t.me/dvrcore"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn btn-accent w-100 mb-3"
-      >
-        <i class="bi bi-chat-dots-fill me-2"></i>
-        Contact me
-      </a>
-
       <!-- Links -->
-      <div class="card p-3 mb-3">
+      <nav class="card links" aria-label="Contact and social links">
         <a
-          class="btn btn-accent w-100 mb-2"
-          href="mailto:diyorbekqodirboyev156@gmail.com"
-        >
-          <i class="bi bi-envelope-fill me-2"></i>Email
-        </a>
-
-        <a
-          class="btn btn-accent w-100 mb-2"
+          class="btn btn-accent"
           href="https://t.me/dvrcore"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i class="bi bi-telegram me-2"></i>Telegram
+          <i class="bi bi-telegram" aria-hidden="true"></i>Telegram
         </a>
-
+        <a class="btn btn-accent" href="mailto:diyorbekqodirboyev156@gmail.com">
+          <i class="bi bi-envelope-fill" aria-hidden="true"></i>Email
+        </a>
         <a
-          class="btn btn-accent w-100 mb-2"
+          class="btn btn-ghost"
           href="https://github.com/dvrone"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i class="bi bi-github me-2"></i>GitHub
+          <i class="bi bi-github" aria-hidden="true"></i>GitHub
         </a>
-
         <a
-          class="btn btn-accent w-100"
+          class="btn btn-ghost"
           href="https://instagram.com/warlockatomic"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i class="bi bi-instagram me-2"></i>Instagram
+          <i class="bi bi-instagram" aria-hidden="true"></i>Instagram
         </a>
-      </div>
+      </nav>
 
-      <!-- Featured Project -->
-      <div class="card p-3 mb-3 text-start">
-        <div class="text-accent mb-1">
-          <i class="bi bi-fire me-1"></i> Featured Project
+      <!-- Featured project -->
+      <article class="card" aria-label="Featured project: het-bot">
+        <p class="project-label">
+          <i class="bi bi-fire" aria-hidden="true"></i> Featured Project
+        </p>
+        <h2 class="project-title">het-bot</h2>
+        <p class="project-desc">
+          Async Telegram bot built with Aiogram and SQLAlchemy.
+        </p>
+        <div class="project-stack" aria-label="Tech stack">
+          <span class="tag">Python</span>
+          <span class="tag">Aiogram</span>
+          <span class="tag">SQLAlchemy</span>
+          <span class="tag">Async</span>
         </div>
-
-        <strong>het-bot</strong><br />
-        <small class="text-secondary">
-          Async Telegram bot (Aiogram, SQLAlchemy) </small
-        ><br />
-
         <a
+          class="project-link"
           href="https://github.com/dvrone/het-bot"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-accent"
         >
-          View Project &rarr;
+          View on GitHub <i class="bi bi-arrow-right" aria-hidden="true"></i>
         </a>
-      </div>
+      </article>
 
       <!-- Footer -->
-      <div class="small text-secondary">&copy; 2026 Diyorbek Q.</div>
-    </div>
+      <footer class="footer">&copy; <span id="year"></span> Diyorbek Q.</footer>
+    </main>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>
