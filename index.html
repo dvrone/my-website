@@ -8,11 +8,11 @@
     <!-- SEO -->
     <meta
       name="description"
-      content="Diyorbek Q. — Backend developer from Uzbekistan building secure web apps & Telegram bots with Python, Django, and Aiogram."
+      content="Diyorbek Q. — Backend developer from Uzbekistan. Python, Django, Flask, Telegram bots."
     />
     <meta
       name="keywords"
-      content="Diyorbek, Python, Django, Flask, Telegram bot, Aiogram, backend, cybersecurity"
+      content="Diyorbek, Python, Django, Flask, Telegram bot, Aiogram, backend"
     />
     <meta name="author" content="Diyorbek Q." />
 
@@ -20,7 +20,7 @@
     <meta property="og:title" content="Diyorbek Q. — Backend Developer" />
     <meta
       property="og:description"
-      content="Building secure web apps & Telegram bots with Python, Django, and Aiogram."
+      content="Backend developer specializing in Python, Django, and Telegram bots."
     />
     <meta property="og:type" content="website" />
 
@@ -35,7 +35,7 @@
       rel="stylesheet"
     />
 
-    <!-- Bootstrap Icons only — no full Bootstrap framework needed -->
+    <!-- Bootstrap Icons -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
@@ -62,7 +62,6 @@
         --radius: 6px;
       }
 
-      /* ── Base ───────────────────────────────────────── */
       html {
         scroll-behavior: smooth;
       }
@@ -85,10 +84,10 @@
       /* ── Layout ─────────────────────────────────────── */
       .page {
         width: 100%;
-        max-width: 420px;
+        max-width: 460px;
         display: flex;
         flex-direction: column;
-        gap: 1.25rem;
+        gap: 1.5rem;
       }
 
       /* ── Header ─────────────────────────────────────── */
@@ -97,22 +96,22 @@
       }
 
       .name {
-        font-size: clamp(1.6rem, 5vw, 2rem);
+        font-size: clamp(1.8rem, 6vw, 2.3rem);
         font-weight: 700;
         color: var(--accent);
         letter-spacing: 0.03em;
       }
 
       .tagline {
-        margin-top: 0.35rem;
-        font-size: 0.8rem;
+        margin-top: 0.4rem;
+        font-size: 0.85rem;
         color: var(--muted);
-        letter-spacing: 0.08em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
       }
 
       .status {
-        margin-top: 0.75rem;
+        margin-top: 0.8rem;
         display: inline-flex;
         align-items: center;
         gap: 0.45rem;
@@ -120,13 +119,11 @@
         color: var(--muted);
       }
 
-      /* Pulsing green dot */
       .dot {
         width: 8px;
         height: 8px;
         border-radius: 50%;
         background: var(--accent);
-        flex-shrink: 0;
         animation: pulse 2.4s ease-in-out infinite;
       }
 
@@ -136,120 +133,66 @@
           opacity: 1;
           transform: scale(1);
         }
+
         50% {
           opacity: 0.4;
           transform: scale(0.7);
         }
       }
 
-      /* ── Bio ────────────────────────────────────────── */
-      .bio {
-        font-size: 0.875rem;
-        color: var(--muted);
-        line-height: 1.75;
-        text-align: center;
+      /* ── GitHub Link ───────────────────────────────── */
+      .github-link {
+        display: flex;
+        justify-content: center;
       }
 
-      /* ── Card ───────────────────────────────────────── */
+      /* ── Projects Section ──────────────────────────── */
+      .section-title {
+        font-size: 0.95rem;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-bottom: 0.8rem;
+        padding-left: 0.2rem;
+      }
+
+      .projects {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
       .card {
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        padding: 0.9rem 1rem;
-      }
-
-      /* ── Links grid ─────────────────────────────────── */
-      .links {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.6rem;
-      }
-
-      /* ── Button ─────────────────────────────────────── */
-      .btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.45rem;
-        padding: 0.6rem 0.75rem;
-        border-radius: var(--radius);
-        font-family: inherit;
-        font-size: 0.85rem;
-        font-weight: 700;
-        cursor: pointer;
-        border: none;
-        transition:
-          background 0.15s,
-          color 0.15s,
-          border-color 0.15s,
-          transform 0.1s;
-        white-space: nowrap;
-      }
-
-      .btn:active {
-        transform: scale(0.97);
-      }
-
-      .btn-accent {
-        background: var(--accent);
-        color: #000;
-      }
-
-      .btn-accent:hover {
-        background: var(--accent-h);
-      }
-
-      .btn-ghost {
-        background: transparent;
-        color: var(--text);
-        border: 1px solid var(--border);
-      }
-
-      .btn-ghost:hover {
-        border-color: var(--accent);
-        color: var(--accent);
-      }
-
-      /* Focus ring for keyboard navigation */
-      .btn:focus-visible,
-      a:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 3px;
-        border-radius: var(--radius);
-      }
-
-      /* ── Project card ───────────────────────────────── */
-      .project-label {
-        font-size: 0.7rem;
-        color: var(--accent);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-bottom: 0.6rem;
+        padding: 1rem;
       }
 
       .project-title {
-        font-size: 1rem;
+        font-size: 1.1rem;
         font-weight: 700;
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.3rem;
+        color: var(--text);
       }
 
       .project-desc {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         color: var(--muted);
-        margin-bottom: 0.65rem;
-        line-height: 1.5;
+        line-height: 1.6;
+        margin-bottom: 0.9rem;
       }
 
       .project-stack {
         display: flex;
         flex-wrap: wrap;
         gap: 0.4rem;
-        margin-bottom: 0.75rem;
+        margin-bottom: 1rem;
       }
 
       .tag {
-        font-size: 0.7rem;
-        padding: 0.2rem 0.55rem;
+        font-size: 0.72rem;
+        padding: 0.2rem 0.6rem;
         border-radius: 999px;
         background: #1a2a0a;
         color: var(--accent);
@@ -257,16 +200,16 @@
       }
 
       .project-link {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         color: var(--accent);
         display: inline-flex;
         align-items: center;
-        gap: 0.3rem;
-        transition: gap 0.15s;
+        gap: 0.35rem;
+        transition: gap 0.2s;
       }
 
       .project-link:hover {
-        gap: 0.55rem;
+        gap: 0.6rem;
       }
 
       /* ── Footer ─────────────────────────────────────── */
@@ -274,118 +217,195 @@
         text-align: center;
         font-size: 0.75rem;
         color: var(--muted);
+        margin-top: 1rem;
       }
 
-      /* ── Entrance animation ─────────────────────────── */
+      /* ── Animations ─────────────────────────────────── */
       @media (prefers-reduced-motion: no-preference) {
         .page > * {
           opacity: 0;
-          transform: translateY(12px);
-          animation: fadein 0.4s ease forwards;
+          transform: translateY(15px);
+          animation: fadein 0.5s ease forwards;
         }
 
         .page > *:nth-child(1) {
           animation-delay: 0.05s;
         }
+
         .page > *:nth-child(2) {
-          animation-delay: 0.1s;
-        }
-        .page > *:nth-child(3) {
           animation-delay: 0.15s;
         }
-        .page > *:nth-child(4) {
-          animation-delay: 0.2s;
-        }
-        .page > *:nth-child(5) {
+
+        .page > *:nth-child(3) {
           animation-delay: 0.25s;
         }
 
-        @keyframes fadein {
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        .page > *:nth-child(4) {
+          animation-delay: 0.35s;
+        }
+      }
+
+      @keyframes fadein {
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
       }
     </style>
   </head>
+
   <body>
     <main class="page" aria-label="Diyorbek Q. personal site">
       <!-- Header -->
       <header class="header">
         <h1 class="name">Diyorbek Q.</h1>
-        <p class="tagline">Python · Django · Backend · Telegram Bots</p>
+        <p class="tagline">
+          Backend Developer • Python • Django • Telegram Bots
+        </p>
         <p class="status">
           <span class="dot" aria-hidden="true"></span>
-          Building secure web apps &amp; bots
+          Building secure &amp; scalable systems
         </p>
       </header>
 
-      <!-- Bio -->
-      <p class="bio">
-        Focused on web applications, backend systems, and Telegram bots.<br />
-        Interested in secure &amp; scalable software architecture.<br />
-        Continuously improving through real-world projects.
-      </p>
-
-      <!-- Links -->
-      <nav class="card links" aria-label="Contact and social links">
+      <!-- GitHub -->
+      <div class="github-link">
         <a
           class="btn btn-accent"
-          href="https://t.me/dvrcore"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i class="bi bi-telegram" aria-hidden="true"></i>Telegram
-        </a>
-        <a class="btn btn-accent" href="mailto:diyorbekqodirboyev156@gmail.com">
-          <i class="bi bi-envelope-fill" aria-hidden="true"></i>Email
-        </a>
-        <a
-          class="btn btn-ghost"
           href="https://github.com/dvrone"
           target="_blank"
           rel="noopener noreferrer"
+          style="padding: 0.7rem 1.2rem; font-size: 0.9rem"
         >
-          <i class="bi bi-github" aria-hidden="true"></i>GitHub
+          <i class="bi bi-github" aria-hidden="true"></i>
+          GitHub Profile
         </a>
-        <a
-          class="btn btn-ghost"
-          href="https://instagram.com/warlockatomic"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i class="bi bi-instagram" aria-hidden="true"></i>Instagram
-        </a>
-      </nav>
+      </div>
 
-      <!-- Featured project -->
-      <article class="card" aria-label="Featured project: het-bot">
-        <p class="project-label">
-          <i class="bi bi-fire" aria-hidden="true"></i> Featured Project
-        </p>
-        <h2 class="project-title">het-bot</h2>
-        <p class="project-desc">
-          Async Telegram bot built with Aiogram and SQLAlchemy.
-        </p>
-        <div class="project-stack" aria-label="Tech stack">
-          <span class="tag">Python</span>
-          <span class="tag">Aiogram</span>
-          <span class="tag">SQLAlchemy</span>
-          <span class="tag">Async</span>
+      <!-- Projects -->
+      <section>
+        <h2 class="section-title">Projects</h2>
+        <div class="projects">
+          <!-- het-bot -->
+          <article class="card">
+            <h3 class="project-title">het-bot</h3>
+            <p class="project-desc">
+              Async Telegram bot for JSC "Karakalpak Regional Electric Networks
+              Enterprise" — handles citizen registration, service requests, and
+              multilingual support.
+            </p>
+            <div class="project-stack">
+              <span class="tag">Python</span>
+              <span class="tag">Aiogram</span>
+              <span class="tag">SQLAlchemy</span>
+              <span class="tag">Async</span>
+            </div>
+            <a
+              class="project-link"
+              href="https://github.com/dvrone/het-bot"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Repository
+              <i class="bi bi-arrow-right" aria-hidden="true"></i>
+            </a>
+          </article>
+
+          <!-- shinobu-net -->
+          <article class="card">
+            <h3 class="project-title">shinobu-net</h3>
+            <p class="project-desc">
+              Network anomaly analyzer that detects DDoS, DoS, brute-force, and
+              scanning attacks from .pcap files.
+            </p>
+            <div class="project-stack">
+              <span class="tag">Python</span>
+              <span class="tag">Flask</span>
+              <span class="tag">PCAP</span>
+            </div>
+            <a
+              class="project-link"
+              href="https://github.com/dvrone/shinobu-net"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Repository
+              <i class="bi bi-arrow-right" aria-hidden="true"></i>
+            </a>
+          </article>
+
+          <!-- 2EZ-exam -->
+          <article class="card">
+            <h3 class="project-title">2EZ-exam</h3>
+            <p class="project-desc">
+              Test and reference platform for students with secure
+              authentication and responsive interface.
+            </p>
+            <div class="project-stack">
+              <span class="tag">Flask</span>
+              <span class="tag">SQLAlchemy</span>
+              <span class="tag">Bootstrap</span>
+              <span class="tag">SQLite</span>
+            </div>
+            <a
+              class="project-link"
+              href="https://github.com/dvrone/2EZ-exam"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Repository
+              <i class="bi bi-arrow-right" aria-hidden="true"></i>
+            </a>
+          </article>
+
+          <!-- shinobu -->
+          <article class="card">
+            <h3 class="project-title">shinobu</h3>
+            <p class="project-desc">
+              Personal coding project focused on building software without
+              relying on AI coding tools.
+            </p>
+            <div class="project-stack">
+              <span class="tag">Python</span>
+            </div>
+            <a
+              class="project-link"
+              href="https://github.com/dvrone/shinobu"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Repository
+              <i class="bi bi-arrow-right" aria-hidden="true"></i>
+            </a>
+          </article>
+
+          <!-- my-website -->
+          <article class="card">
+            <h3 class="project-title">my-website</h3>
+            <p class="project-desc">
+              This personal portfolio website built with clean HTML &amp; CSS.
+            </p>
+            <div class="project-stack">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+            </div>
+            <a
+              class="project-link"
+              href="https://github.com/dvrone/my-website"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Repository
+              <i class="bi bi-arrow-right" aria-hidden="true"></i>
+            </a>
+          </article>
         </div>
-        <a
-          class="project-link"
-          href="https://github.com/dvrone/het-bot"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View on GitHub <i class="bi bi-arrow-right" aria-hidden="true"></i>
-        </a>
-      </article>
+      </section>
 
       <!-- Footer -->
-      <footer class="footer">&copy; <span id="year"></span> Diyorbek Q.</footer>
+      <footer class="footer">
+        © <span id="year"></span> Diyorbek Q. • Tashkent, Uzbekistan
+      </footer>
     </main>
 
     <script>
