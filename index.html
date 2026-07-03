@@ -144,6 +144,83 @@
       .github-link {
         display: flex;
         justify-content: center;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+      }
+
+      .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+        font-family: inherit;
+        color: var(--text);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        transition: border-color 0.2s, color 0.2s;
+      }
+
+      .btn-outline:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      /* ── Tech Stack ───────────────────────────────── */
+      .stack-group {
+        margin-bottom: 0.9rem;
+      }
+
+      .stack-group:last-child {
+        margin-bottom: 0;
+      }
+
+      .stack-label {
+        font-size: 0.7rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        margin-bottom: 0.5rem;
+      }
+
+      .stack-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+
+      /* ── Certifications ───────────────────────────── */
+      .cert-list {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cert-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.65rem 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.85rem;
+      }
+
+      .cert-item:last-child {
+        border-bottom: none;
+      }
+
+      .cert-name {
+        color: var(--text);
+      }
+
+      .cert-link {
+        color: var(--accent);
+        font-size: 0.78rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        white-space: nowrap;
       }
 
       /* ── Projects Section ──────────────────────────── */
@@ -243,6 +320,18 @@
         .page > *:nth-child(4) {
           animation-delay: 0.35s;
         }
+
+        .page > *:nth-child(5) {
+          animation-delay: 0.45s;
+        }
+
+        .page > *:nth-child(6) {
+          animation-delay: 0.55s;
+        }
+
+        .page > *:nth-child(7) {
+          animation-delay: 0.65s;
+        }
       }
 
       @keyframes fadein {
@@ -268,7 +357,7 @@
         </p>
       </header>
 
-      <!-- GitHub -->
+      <!-- Connect -->
       <div class="github-link">
         <a
           class="btn btn-accent"
@@ -278,9 +367,71 @@
           style="padding: 0.7rem 1.2rem; font-size: 0.9rem"
         >
           <i class="bi bi-github" aria-hidden="true"></i>
-          GitHub Profile
+          GitHub
+        </a>
+        <a
+          class="btn-outline"
+          href="https://linkedin.com/in/dvrone"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="bi bi-linkedin" aria-hidden="true"></i>
+          LinkedIn
+        </a>
+        <a
+          class="btn-outline"
+          href="https://x.com/dvrcore"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="bi bi-twitter-x" aria-hidden="true"></i>
+          X
         </a>
       </div>
+
+      <!-- Tech Stack -->
+      <section>
+        <h2 class="section-title">Tech Stack</h2>
+        <div class="card">
+          <div class="stack-group">
+            <p class="stack-label">Languages</p>
+            <div class="stack-tags">
+              <span class="tag">Python</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">SQL</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <p class="stack-label">Frameworks</p>
+            <div class="stack-tags">
+              <span class="tag">Flask</span>
+              <span class="tag">Django</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Bootstrap</span>
+              <span class="tag">Aiogram</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <p class="stack-label">Databases</p>
+            <div class="stack-tags">
+              <span class="tag">SQLite</span>
+              <span class="tag">PostgreSQL</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <p class="stack-label">Tools</p>
+            <div class="stack-tags">
+              <span class="tag">Git</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">Linux</span>
+              <span class="tag">VS Code</span>
+              <span class="tag">Docker (learning)</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Projects -->
       <section>
@@ -399,6 +550,81 @@
               <i class="bi bi-arrow-right" aria-hidden="true"></i>
             </a>
           </article>
+        </div>
+      </section>
+
+      <!-- Certifications -->
+      <section>
+        <h2 class="section-title">Certifications</h2>
+        <div class="card">
+          <div class="cert-list">
+            <div class="cert-item">
+              <span class="cert-name">HTML</span>
+              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-1PQBJBBJ" target="_blank" rel="noopener noreferrer">
+                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="cert-item">
+              <span class="cert-name">Introduction to CSS</span>
+              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-UDZZTQKR" target="_blank" rel="noopener noreferrer">
+                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="cert-item">
+              <span class="cert-name">Introduction to JavaScript</span>
+              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-YOBGLOPK" target="_blank" rel="noopener noreferrer">
+                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="cert-item">
+              <span class="cert-name">Web Development</span>
+              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-42JDPEAJ" target="_blank" rel="noopener noreferrer">
+                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="cert-item">
+              <span class="cert-name">Introduction to Python</span>
+              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-JTIHM0XZ" target="_blank" rel="noopener noreferrer">
+                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="cert-item">
+              <span class="cert-name">Python Developer</span>
+              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-EI3QTN6M" target="_blank" rel="noopener noreferrer">
+                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="cert-item">
+              <span class="cert-name">Python Intermediate</span>
+              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-XYQZOWKC" target="_blank" rel="noopener noreferrer">
+                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="cert-item">
+              <span class="cert-name">Meet Claude</span>
+              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-3BS6UHDU" target="_blank" rel="noopener noreferrer">
+                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="cert-item">
+              <span class="cert-name">Tech for Everyone</span>
+              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-4DLX6RXO" target="_blank" rel="noopener noreferrer">
+                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="cert-item">
+              <span class="cert-name">Prompt Engineering</span>
+              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-OHANR0GY" target="_blank" rel="noopener noreferrer">
+                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="cert-item">
+              <span class="cert-name">Data Analytics with AI</span>
+              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-UQPUTDTB" target="_blank" rel="noopener noreferrer">
+                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
