@@ -1,337 +1,333 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Diyorbek Q. — Backend Developer</title>
 
-    <!-- SEO -->
-    <meta
-      name="description"
-      content="Diyorbek Q. — Backend developer from Uzbekistan. Python, Django, Flask, Telegram bots."
-    />
-    <meta
-      name="keywords"
-      content="Diyorbek, Python, Django, Flask, Telegram bot, Aiogram, backend"
-    />
-    <meta name="author" content="Diyorbek Q." />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diyorbek Qodirboyev — Developer</title>
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Diyorbek Q. — Backend Developer" />
-    <meta
-      property="og:description"
-      content="Backend developer specializing in Python, Django, and Telegram bots."
-    />
-    <meta property="og:type" content="website" />
+  <meta name="description"
+    content="Diyorbek Qodirboyev — self-taught developer building web apps and bots with Python, Flask, Django, and FastAPI." />
+  <meta name="keywords"
+    content="Diyorbek Qodirboyev, Python, Flask, Django, FastAPI, Telegram bot, backend developer" />
+  <meta name="author" content="Diyorbek Qodirboyev" />
 
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" sizes="any" />
+  <meta property="og:title" content="Diyorbek Qodirboyev — Developer" />
+  <meta property="og:description"
+    content="Self-taught developer building web apps and bots with Python, Flask, Django, and FastAPI." />
+  <meta property="og:type" content="website" />
 
-    <!-- Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+  <link rel="icon" href="favicon.ico" sizes="any" />
 
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
 
-    <style>
-      /* ── Reset & tokens ─────────────────────────────── */
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0b0b0b;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --text: #eaffea;
+      --muted: #6b7d6b;
+      --accent: #7cfc00;
+      --accent-h: #aaff00;
+      --radius: 6px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Courier Prime", monospace;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      display: flex;
+      justify-content: center;
+      padding: 2.5rem 1rem 4rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 460px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+    }
+
+    .name {
+      font-size: clamp(1.5rem, 5vw, 1.9rem);
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      margin-top: 0.3rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .status {
+      margin-top: 0.7rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
       }
 
-      :root {
-        --bg: #0b0b0b;
-        --surface: #111111;
-        --border: #222222;
-        --text: #eaffea;
-        --muted: #7a8c7a;
-        --accent: #7cfc00;
-        --accent-h: #aaff00;
-        --radius: 6px;
+      50% {
+        opacity: 0.35;
+        transform: scale(0.65);
+      }
+    }
+
+    /* ── Section ── */
+    .section-label {
+      font-size: 0.68rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Skills grid ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+    .skill-group h3 {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.45rem;
+      font-weight: 400;
+    }
+
+    .skill-group ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .skill-group li {
+      font-size: 0.82rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .skill-group li::before {
+      content: "";
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── Projects ── */
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 0.75rem;
+      align-items: start;
+      padding: 0.75rem 0.9rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 0.15s;
+    }
+
+    .project:hover {
+      border-color: #2e2e2e;
+    }
+
+    .project-icon {
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-top: 1px;
+    }
+
+    .project-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: gap 0.15s;
+    }
+
+    .project:hover .project-name {
+      gap: 0.5rem;
+    }
+
+    .project-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      line-height: 1.5;
+      grid-column: 2;
+    }
+
+    /* ── Writing & Links ── */
+    .link-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .link-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--text);
+      padding: 0.55rem 0.8rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .link-item:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .link-item i {
+      font-size: 0.95rem;
+      color: var(--muted);
+      flex-shrink: 0;
+      transition: color 0.15s;
+    }
+
+    .link-item:hover i {
+      color: var(--accent);
+    }
+
+    .link-item .link-label {
+      flex: 1;
+    }
+
+    .link-item .link-arrow {
+      font-size: 0.7rem;
+      color: var(--muted);
+      transition: color 0.15s, transform 0.15s;
+    }
+
+    .link-item:hover .link-arrow {
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      font-size: 0.73rem;
+      color: var(--muted);
+    }
+
+    /* Focus ring */
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: var(--radius);
+    }
+
+    /* ── Entrance animation ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .page>* {
+        opacity: 0;
+        transform: translateY(10px);
+        animation: fadein 0.35s ease forwards;
       }
 
-      html {
-        scroll-behavior: smooth;
+      .page>*:nth-child(1) {
+        animation-delay: 0.04s;
       }
 
-      body {
-        font-family: "Courier Prime", monospace;
-        background: var(--bg);
-        color: var(--text);
-        min-height: 100dvh;
-        display: flex;
-        justify-content: center;
-        padding: 2.5rem 1rem 3rem;
+      .page>*:nth-child(2) {
+        animation-delay: 0.08s;
       }
 
-      a {
-        text-decoration: none;
-        color: inherit;
+      .page>*:nth-child(3) {
+        animation-delay: 0.12s;
       }
 
-      /* ── Layout ─────────────────────────────────────── */
-      .page {
-        width: 100%;
-        max-width: 460px;
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
+      .page>*:nth-child(4) {
+        animation-delay: 0.16s;
       }
 
-      /* ── Header ─────────────────────────────────────── */
-      .header {
-        text-align: center;
+      .page>*:nth-child(5) {
+        animation-delay: 0.20s;
       }
 
-      .name {
-        font-size: clamp(1.8rem, 6vw, 2.3rem);
-        font-weight: 700;
-        color: var(--accent);
-        letter-spacing: 0.03em;
-      }
-
-      .tagline {
-        margin-top: 0.4rem;
-        font-size: 0.85rem;
-        color: var(--muted);
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
-
-      .status {
-        margin-top: 0.8rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-        font-size: 0.85rem;
-        color: var(--muted);
-      }
-
-      .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--accent);
-        animation: pulse 2.4s ease-in-out infinite;
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
-          transform: scale(1);
-        }
-
-        50% {
-          opacity: 0.4;
-          transform: scale(0.7);
-        }
-      }
-
-      /* ── GitHub Link ───────────────────────────────── */
-      .github-link {
-        display: flex;
-        justify-content: center;
-        gap: 0.6rem;
-        flex-wrap: wrap;
-      }
-
-      .btn-outline {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.7rem 1.2rem;
-        font-size: 0.9rem;
-        font-family: inherit;
-        color: var(--text);
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        transition: border-color 0.2s, color 0.2s;
-      }
-
-      .btn-outline:hover {
-        border-color: var(--accent);
-        color: var(--accent);
-      }
-
-      /* ── Tech Stack ───────────────────────────────── */
-      .stack-group {
-        margin-bottom: 0.9rem;
-      }
-
-      .stack-group:last-child {
-        margin-bottom: 0;
-      }
-
-      .stack-label {
-        font-size: 0.7rem;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        margin-bottom: 0.5rem;
-      }
-
-      .stack-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-      }
-
-      /* ── Certifications ───────────────────────────── */
-      .cert-list {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .cert-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 0.65rem 0;
-        border-bottom: 1px solid var(--border);
-        font-size: 0.85rem;
-      }
-
-      .cert-item:last-child {
-        border-bottom: none;
-      }
-
-      .cert-name {
-        color: var(--text);
-      }
-
-      .cert-link {
-        color: var(--accent);
-        font-size: 0.78rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.3rem;
-        white-space: nowrap;
-      }
-
-      /* ── Projects Section ──────────────────────────── */
-      .section-title {
-        font-size: 0.95rem;
-        color: var(--accent);
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        margin-bottom: 0.8rem;
-        padding-left: 0.2rem;
-      }
-
-      .projects {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1rem;
-      }
-
-      .project-title {
-        font-size: 1.1rem;
-        font-weight: 700;
-        margin-bottom: 0.3rem;
-        color: var(--text);
-      }
-
-      .project-desc {
-        font-size: 0.85rem;
-        color: var(--muted);
-        line-height: 1.6;
-        margin-bottom: 0.9rem;
-      }
-
-      .project-stack {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-        margin-bottom: 1rem;
-      }
-
-      .tag {
-        font-size: 0.72rem;
-        padding: 0.2rem 0.6rem;
-        border-radius: 999px;
-        background: #1a2a0a;
-        color: var(--accent);
-        border: 1px solid #2a4010;
-      }
-
-      .project-link {
-        font-size: 0.85rem;
-        color: var(--accent);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        transition: gap 0.2s;
-      }
-
-      .project-link:hover {
-        gap: 0.6rem;
-      }
-
-      /* ── Footer ─────────────────────────────────────── */
-      .footer {
-        text-align: center;
-        font-size: 0.75rem;
-        color: var(--muted);
-        margin-top: 1rem;
-      }
-
-      /* ── Animations ─────────────────────────────────── */
-      @media (prefers-reduced-motion: no-preference) {
-        .page > * {
-          opacity: 0;
-          transform: translateY(15px);
-          animation: fadein 0.5s ease forwards;
-        }
-
-        .page > *:nth-child(1) {
-          animation-delay: 0.05s;
-        }
-
-        .page > *:nth-child(2) {
-          animation-delay: 0.15s;
-        }
-
-        .page > *:nth-child(3) {
-          animation-delay: 0.25s;
-        }
-
-        .page > *:nth-child(4) {
-          animation-delay: 0.35s;
-        }
-
-        .page > *:nth-child(5) {
-          animation-delay: 0.45s;
-        }
-
-        .page > *:nth-child(6) {
-          animation-delay: 0.55s;
-        }
-
-        .page > *:nth-child(7) {
-          animation-delay: 0.65s;
-        }
+      .page>*:nth-child(6) {
+        animation-delay: 0.24s;
       }
 
       @keyframes fadein {
@@ -340,302 +336,138 @@
           transform: translateY(0);
         }
       }
-    </style>
-  </head>
+    }
+  </style>
+</head>
 
-  <body>
-    <main class="page" aria-label="Diyorbek Q. personal site">
-      <!-- Header -->
-      <header class="header">
-        <h1 class="name">Diyorbek Q.</h1>
-        <p class="tagline">
-          Backend Developer • Python • Django • Telegram Bots
-        </p>
-        <p class="status">
-          <span class="dot" aria-hidden="true"></span>
-          Building secure &amp; scalable systems
-        </p>
-      </header>
+<body>
+  <main class="page" aria-label="Diyorbek Qodirboyev personal site">
 
-      <!-- Connect -->
-      <div class="github-link">
-        <a
-          class="btn btn-accent"
-          href="https://github.com/dvrone"
-          target="_blank"
-          rel="noopener noreferrer"
-          style="padding: 0.7rem 1.2rem; font-size: 0.9rem"
-        >
-          <i class="bi bi-github" aria-hidden="true"></i>
-          GitHub
+    <!-- Header -->
+    <header class="header">
+      <h1 class="name">Diyorbek Qodirboyev</h1>
+      <p class="subtitle">Self-taught Developer</p>
+      <p class="status">
+        <span class="dot" aria-hidden="true"></span>
+        Open to opportunities
+      </p>
+    </header>
+
+    <!-- Skills -->
+    <section aria-label="Skills">
+      <p class="section-label">Skills</p>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <ul>
+            <li>Python</li>
+            <li>JavaScript</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Frameworks</h3>
+          <ul>
+            <li>Flask</li>
+            <li>Django</li>
+            <li>FastAPI</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Tools</h3>
+          <ul>
+            <li>Git</li>
+            <li>Linux</li>
+            <li>Docker</li>
+            <li>VS Code</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section aria-label="Projects">
+      <p class="section-label">Projects</p>
+      <div class="projects">
+
+        <a class="project" href="https://github.com/dvrone/shinobu-net" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-activity project-icon" aria-hidden="true"></i>
+          <span class="project-name">shinobu-net <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+          <span class="project-desc">Network anomaly analyzer for detecting DDoS, brute-force, and suspicious
+            traffic.</span>
         </a>
-        <a
-          class="btn-outline"
-          href="https://linkedin.com/in/dvrone"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i class="bi bi-linkedin" aria-hidden="true"></i>
-          LinkedIn
+
+        <a class="project" href="https://github.com/dvrone/2EZ-exam" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-journal-check project-icon" aria-hidden="true"></i>
+          <span class="project-name">2EZ-exam <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+          <span class="project-desc">Flask-based online examination platform.</span>
         </a>
-        <a
-          class="btn-outline"
-          href="https://x.com/dvrcore"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i class="bi bi-twitter-x" aria-hidden="true"></i>
-          X
+
+        <a class="project" href="https://github.com/dvrone/het-bot" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-robot project-icon" aria-hidden="true"></i>
+          <span class="project-name">het-bot <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+          <span class="project-desc">Asynchronous Telegram bot for citizen registration and application
+            management.</span>
+        </a>
+
+        <a class="project" href="https://github.com/dvrone/my-website" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-globe project-icon" aria-hidden="true"></i>
+          <span class="project-name">my-website <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+          <span class="project-desc">Personal portfolio website.</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Writing -->
+    <section aria-label="Writing">
+      <p class="section-label">Writing</p>
+      <div class="link-list">
+        <a class="link-item" href="https://medium.com/@dvrone" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-medium" aria-hidden="true"></i>
+          <span class="link-label">Medium</span>
+          <i class="bi bi-arrow-right link-arrow" aria-hidden="true"></i>
+        </a>
+        <a class="link-item" href="https://bsky.app/profile/dvrone.bsky.social" target="_blank"
+          rel="noopener noreferrer">
+          <i class="bi bi-cloud" aria-hidden="true"></i>
+          <span class="link-label">Bluesky</span>
+          <i class="bi bi-arrow-right link-arrow" aria-hidden="true"></i>
         </a>
       </div>
+    </section>
 
-      <!-- Tech Stack -->
-      <section>
-        <h2 class="section-title">Tech Stack</h2>
-        <div class="card">
-          <div class="stack-group">
-            <p class="stack-label">Languages</p>
-            <div class="stack-tags">
-              <span class="tag">Python</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">HTML5</span>
-              <span class="tag">CSS3</span>
-              <span class="tag">SQL</span>
-            </div>
-          </div>
-          <div class="stack-group">
-            <p class="stack-label">Frameworks</p>
-            <div class="stack-tags">
-              <span class="tag">Flask</span>
-              <span class="tag">Django</span>
-              <span class="tag">FastAPI</span>
-              <span class="tag">Bootstrap</span>
-              <span class="tag">Aiogram</span>
-            </div>
-          </div>
-          <div class="stack-group">
-            <p class="stack-label">Databases</p>
-            <div class="stack-tags">
-              <span class="tag">SQLite</span>
-              <span class="tag">PostgreSQL</span>
-            </div>
-          </div>
-          <div class="stack-group">
-            <p class="stack-label">Tools</p>
-            <div class="stack-tags">
-              <span class="tag">Git</span>
-              <span class="tag">GitHub</span>
-              <span class="tag">Linux</span>
-              <span class="tag">VS Code</span>
-              <span class="tag">Docker (learning)</span>
-            </div>
-          </div>
-        </div>
-      </section>
+    <!-- Links -->
+    <section aria-label="Links">
+      <p class="section-label">Links</p>
+      <div class="link-list">
+        <a class="link-item" href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-github" aria-hidden="true"></i>
+          <span class="link-label">GitHub</span>
+          <i class="bi bi-arrow-right link-arrow" aria-hidden="true"></i>
+        </a>
+        <a class="link-item" href="https://linkedin.com/in/dvrone" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-linkedin" aria-hidden="true"></i>
+          <span class="link-label">LinkedIn</span>
+          <i class="bi bi-arrow-right link-arrow" aria-hidden="true"></i>
+        </a>
+        <a class="link-item" href="https://x.com/dvrcore" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-twitter-x" aria-hidden="true"></i>
+          <span class="link-label">X</span>
+          <i class="bi bi-arrow-right link-arrow" aria-hidden="true"></i>
+        </a>
+      </div>
+    </section>
 
-      <!-- Projects -->
-      <section>
-        <h2 class="section-title">Projects</h2>
-        <div class="projects">
-          <!-- het-bot -->
-          <article class="card">
-            <h3 class="project-title">het-bot</h3>
-            <p class="project-desc">
-              Async Telegram bot for JSC "Karakalpak Regional Electric Networks
-              Enterprise" — handles citizen registration, service requests, and
-              multilingual support.
-            </p>
-            <div class="project-stack">
-              <span class="tag">Python</span>
-              <span class="tag">Aiogram</span>
-              <span class="tag">SQLAlchemy</span>
-              <span class="tag">Async</span>
-            </div>
-            <a
-              class="project-link"
-              href="https://github.com/dvrone/het-bot"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Repository
-              <i class="bi bi-arrow-right" aria-hidden="true"></i>
-            </a>
-          </article>
+    <!-- Footer -->
+    <footer class="footer">
+      &copy; <span id="year"></span> Diyorbek Qodirboyev
+    </footer>
 
-          <!-- shinobu-net -->
-          <article class="card">
-            <h3 class="project-title">shinobu-net</h3>
-            <p class="project-desc">
-              Network anomaly analyzer that detects DDoS, DoS, brute-force, and
-              scanning attacks from .pcap files.
-            </p>
-            <div class="project-stack">
-              <span class="tag">Python</span>
-              <span class="tag">Flask</span>
-              <span class="tag">PCAP</span>
-            </div>
-            <a
-              class="project-link"
-              href="https://github.com/dvrone/shinobu-net"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Repository
-              <i class="bi bi-arrow-right" aria-hidden="true"></i>
-            </a>
-          </article>
+  </main>
 
-          <!-- 2EZ-exam -->
-          <article class="card">
-            <h3 class="project-title">2EZ-exam</h3>
-            <p class="project-desc">
-              Test and reference platform for students with secure
-              authentication and responsive interface.
-            </p>
-            <div class="project-stack">
-              <span class="tag">Flask</span>
-              <span class="tag">SQLAlchemy</span>
-              <span class="tag">Bootstrap</span>
-              <span class="tag">SQLite</span>
-            </div>
-            <a
-              class="project-link"
-              href="https://github.com/dvrone/2EZ-exam"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Repository
-              <i class="bi bi-arrow-right" aria-hidden="true"></i>
-            </a>
-          </article>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
 
-          <!-- shinobu -->
-          <article class="card">
-            <h3 class="project-title">shinobu</h3>
-            <p class="project-desc">
-              Personal coding project focused on building software without
-              relying on AI coding tools.
-            </p>
-            <div class="project-stack">
-              <span class="tag">Python</span>
-            </div>
-            <a
-              class="project-link"
-              href="https://github.com/dvrone/shinobu"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Repository
-              <i class="bi bi-arrow-right" aria-hidden="true"></i>
-            </a>
-          </article>
-
-          <!-- my-website -->
-          <article class="card">
-            <h3 class="project-title">my-website</h3>
-            <p class="project-desc">
-              This personal portfolio website built with clean HTML &amp; CSS.
-            </p>
-            <div class="project-stack">
-              <span class="tag">HTML</span>
-              <span class="tag">CSS</span>
-            </div>
-            <a
-              class="project-link"
-              href="https://github.com/dvrone/my-website"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Repository
-              <i class="bi bi-arrow-right" aria-hidden="true"></i>
-            </a>
-          </article>
-        </div>
-      </section>
-
-      <!-- Certifications -->
-      <section>
-        <h2 class="section-title">Certifications</h2>
-        <div class="card">
-          <div class="cert-list">
-            <div class="cert-item">
-              <span class="cert-name">HTML</span>
-              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-1PQBJBBJ" target="_blank" rel="noopener noreferrer">
-                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-              </a>
-            </div>
-            <div class="cert-item">
-              <span class="cert-name">Introduction to CSS</span>
-              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-UDZZTQKR" target="_blank" rel="noopener noreferrer">
-                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-              </a>
-            </div>
-            <div class="cert-item">
-              <span class="cert-name">Introduction to JavaScript</span>
-              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-YOBGLOPK" target="_blank" rel="noopener noreferrer">
-                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-              </a>
-            </div>
-            <div class="cert-item">
-              <span class="cert-name">Web Development</span>
-              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-42JDPEAJ" target="_blank" rel="noopener noreferrer">
-                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-              </a>
-            </div>
-            <div class="cert-item">
-              <span class="cert-name">Introduction to Python</span>
-              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-JTIHM0XZ" target="_blank" rel="noopener noreferrer">
-                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-              </a>
-            </div>
-            <div class="cert-item">
-              <span class="cert-name">Python Developer</span>
-              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-EI3QTN6M" target="_blank" rel="noopener noreferrer">
-                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-              </a>
-            </div>
-            <div class="cert-item">
-              <span class="cert-name">Python Intermediate</span>
-              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-XYQZOWKC" target="_blank" rel="noopener noreferrer">
-                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-              </a>
-            </div>
-            <div class="cert-item">
-              <span class="cert-name">Meet Claude</span>
-              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-3BS6UHDU" target="_blank" rel="noopener noreferrer">
-                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-              </a>
-            </div>
-            <div class="cert-item">
-              <span class="cert-name">Tech for Everyone</span>
-              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-4DLX6RXO" target="_blank" rel="noopener noreferrer">
-                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-              </a>
-            </div>
-            <div class="cert-item">
-              <span class="cert-name">Prompt Engineering</span>
-              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-OHANR0GY" target="_blank" rel="noopener noreferrer">
-                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-              </a>
-            </div>
-            <div class="cert-item">
-              <span class="cert-name">Data Analytics with AI</span>
-              <a class="cert-link" href="https://www.sololearn.com/certificates/CC-UQPUTDTB" target="_blank" rel="noopener noreferrer">
-                View <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <footer class="footer">
-        © <span id="year"></span> Diyorbek Q. • Tashkent, Uzbekistan
-      </footer>
-    </main>
-
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-  </body>
 </html>
