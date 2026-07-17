@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0d0f12; }
+::-webkit-scrollbar-thumb { background: #1f2329; border-radius: 3px; }
+
+/* ── Hero grid overlay (pseudo-elements can't be done in Tailwind utilities) ── */
+.hero-grid::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(#1f2329 1px, transparent 1px),
+    linear-gradient(90deg, #1f2329 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+.hero-grid::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 60%, transparent 40%, #0d0f12 100%);
+  pointer-events: none;
+}
+
+/* ── Eyebrow prompt arrow ── */
+.hero-eyebrow::before { content: "> "; color: #e6a817; }
+
+/* ── Project card top-border sweep on hover ── */
+.project-card { position: relative; overflow: hidden; }
+.project-card::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: #e6a817;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.project-card:hover::before { transform: scaleX(1); }
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  [class*="animate-fadeUp"] { opacity: 1; animation: none; }
+  .animate-blink { animation: none; }
+}
