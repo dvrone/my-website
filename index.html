@@ -4,24 +4,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diyorbek Qodirboyev — Developer</title>
+  <title>Diyorbek Qodirboyev</title>
 
   <meta name="description"
-    content="Diyorbek Qodirboyev — self-taught developer building web apps and bots with Python, Flask, Django, and FastAPI." />
-  <meta name="keywords"
-    content="Diyorbek Qodirboyev, Python, Flask, Django, FastAPI, Telegram bot, backend developer" />
+    content="Diyorbek Qodirboyev — backend developer specializing in Python, Django, Flask, and FastAPI." />
   <meta name="author" content="Diyorbek Qodirboyev" />
-
-  <meta property="og:title" content="Diyorbek Qodirboyev — Developer" />
-  <meta property="og:description"
-    content="Self-taught developer building web apps and bots with Python, Flask, Django, and FastAPI." />
+  <meta property="og:title" content="Diyorbek Qodirboyev" />
+  <meta property="og:description" content="Backend developer. Python, Django, Flask, FastAPI." />
   <meta property="og:type" content="website" />
 
   <link rel="icon" href="favicon.ico" sizes="any" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
 
   <style>
@@ -34,14 +31,19 @@
     }
 
     :root {
-      --bg: #0b0b0b;
-      --surface: #111111;
-      --border: #1e1e1e;
-      --text: #eaffea;
-      --muted: #6b7d6b;
-      --accent: #7cfc00;
-      --accent-h: #aaff00;
-      --radius: 6px;
+      --bg: #0d0f12;
+      --bg2: #13161b;
+      --border: #1f2329;
+      --text: #c9d1d9;
+      --muted: #586069;
+      --heading: #e6edf3;
+      --accent: #e6a817;
+      --accent-d: #b8860b;
+      --accent-bg: rgba(230, 168, 23, 0.08);
+      --green: #3fb950;
+      --mono: "JetBrains Mono", monospace;
+      --sans: "Inter", sans-serif;
+      --radius: 8px;
     }
 
     html {
@@ -49,13 +51,11 @@
     }
 
     body {
-      font-family: "Courier Prime", monospace;
+      font-family: var(--sans);
       background: var(--bg);
       color: var(--text);
-      min-height: 100dvh;
-      display: flex;
-      justify-content: center;
-      padding: 2.5rem 1rem 4rem;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a {
@@ -63,410 +63,939 @@
       color: inherit;
     }
 
-    .page {
-      width: 100%;
-      max-width: 460px;
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(13, 15, 18, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 56px;
       display: flex;
-      flex-direction: column;
-      gap: 2rem;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    /* ── Header ── */
-    .header {
-      text-align: center;
-    }
-
-    .name {
-      font-size: clamp(1.5rem, 5vw, 1.9rem);
-      font-weight: 700;
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.85rem;
       color: var(--accent);
       letter-spacing: 0.02em;
     }
 
-    .subtitle {
-      margin-top: 0.3rem;
+    .nav-logo span {
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
       font-size: 0.8rem;
       color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--heading);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      padding-top: 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle grid bg */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 60%, transparent 40%, var(--bg) 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 3rem 0;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
       letter-spacing: 0.1em;
       text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 0.5s ease 0.2s forwards;
     }
 
-    .status {
-      margin-top: 0.7rem;
+    .hero-eyebrow::before {
+      content: ">";
+      color: var(--accent);
+    }
+
+    .hero-name {
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      font-weight: 600;
+      color: var(--heading);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      opacity: 0;
+      animation: fadeUp 0.5s ease 0.35s forwards;
+    }
+
+    .hero-name .accent {
+      color: var(--accent);
+    }
+
+    .hero-title {
+      margin-top: 1rem;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 300;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeUp 0.5s ease 0.5s forwards;
+    }
+
+    /* Typewriter */
+    .typewriter-wrap {
+      margin-top: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.5s ease 0.65s forwards;
+    }
+
+    .typewriter-box {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.6rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.65rem 1rem;
+      font-family: var(--mono);
       font-size: 0.82rem;
-      color: var(--muted);
     }
 
-    .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
+    .tw-prompt {
+      color: var(--accent);
+      user-select: none;
+    }
+
+    .tw-text {
+      color: var(--text);
+      min-width: 1ch;
+    }
+
+    .tw-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
       background: var(--accent);
-      flex-shrink: 0;
-      animation: pulse 2.4s ease-in-out infinite;
+      margin-left: 1px;
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
     }
 
-    @keyframes pulse {
-
-      0%,
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-
+    @keyframes blink {
       50% {
-        opacity: 0.35;
-        transform: scale(0.65);
+        opacity: 0;
       }
     }
 
-    /* ── Section ── */
-    .section-label {
-      font-size: 0.68rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 0.75rem;
+    .hero-cta {
+      margin-top: 2.5rem;
       display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.5s ease 0.8s forwards;
     }
 
-    .section-label::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ── Skills grid ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.75rem;
-    }
-
-    .skill-group h3 {
-      font-size: 0.72rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.45rem;
-      font-weight: 400;
-    }
-
-    .skill-group ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-
-    .skill-group li {
-      font-size: 0.82rem;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .skill-group li::before {
-      content: "";
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-    }
-
-    /* ── Projects ── */
-    .projects {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .project {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0 0.75rem;
-      align-items: start;
-      padding: 0.75rem 0.9rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      transition: border-color 0.15s;
-    }
-
-    .project:hover {
-      border-color: #2e2e2e;
-    }
-
-    .project-icon {
-      font-size: 0.9rem;
-      color: var(--accent);
-      margin-top: 1px;
-    }
-
-    .project-name {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--accent);
+    .btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.3rem;
-      transition: gap 0.15s;
-    }
-
-    .project:hover .project-name {
-      gap: 0.5rem;
-    }
-
-    .project-desc {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 0.2rem;
-      line-height: 1.5;
-      grid-column: 2;
-    }
-
-    /* ── Writing & Links ── */
-    .link-list {
-      display: flex;
-      flex-direction: column;
       gap: 0.45rem;
-    }
-
-    .link-item {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.85rem;
-      color: var(--text);
-      padding: 0.55rem 0.8rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
+      padding: 0.6rem 1.2rem;
       border-radius: var(--radius);
-      transition: border-color 0.15s, color 0.15s;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: all 0.18s;
     }
 
-    .link-item:hover {
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0d0f12;
+    }
+
+    .btn-primary:hover {
+      background: #f0b82a;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
       border-color: var(--accent);
       color: var(--accent);
     }
 
-    .link-item i {
-      font-size: 0.95rem;
-      color: var(--muted);
-      flex-shrink: 0;
-      transition: color 0.15s;
-    }
-
-    .link-item:hover i {
-      color: var(--accent);
-    }
-
-    .link-item .link-label {
-      flex: 1;
-    }
-
-    .link-item .link-arrow {
-      font-size: 0.7rem;
-      color: var(--muted);
-      transition: color 0.15s, transform 0.15s;
-    }
-
-    .link-item:hover .link-arrow {
-      color: var(--accent);
-      transform: translateX(3px);
-    }
-
-    /* ── Footer ── */
-    .footer {
-      text-align: center;
-      font-size: 0.73rem;
-      color: var(--muted);
-    }
-
-    /* Focus ring */
-    a:focus-visible {
+    a:focus-visible,
+    .btn:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
       border-radius: var(--radius);
     }
 
-    /* ── Entrance animation ── */
-    @media (prefers-reduced-motion: no-preference) {
-      .page>* {
-        opacity: 0;
-        transform: translateY(10px);
-        animation: fadein 0.35s ease forwards;
+    /* ── Sections ── */
+    section {
+      padding: 5rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .skill-card-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.9rem;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .skill-list li {
+      font-size: 0.88rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .skill-list li .name {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-badge {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      background: var(--accent-bg);
+      color: var(--accent);
+      border: 1px solid rgba(230, 168, 23, 0.2);
+      white-space: nowrap;
+    }
+
+    .skill-badge.learning {
+      background: rgba(63, 185, 80, 0.08);
+      color: var(--green);
+      border-color: rgba(63, 185, 80, 0.2);
+    }
+
+    /* ── Projects ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .project-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      border-color: #2a2f38;
+      transform: translateY(-3px);
+    }
+
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .project-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .project-icon {
+      font-size: 1.3rem;
+      color: var(--accent);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .project-links a {
+      color: var(--muted);
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    .project-links a:hover {
+      color: var(--heading);
+    }
+
+    .project-name {
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--heading);
+    }
+
+    .project-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: auto;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    /* ── Writing & Links ── */
+    .link-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .link-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.85rem 1rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .link-row:hover {
+      border-color: var(--accent);
+      background: var(--accent-bg);
+    }
+
+    .link-row:hover .link-row-icon {
+      color: var(--accent);
+    }
+
+    .link-row:hover .link-row-label {
+      color: var(--heading);
+    }
+
+    .link-row:hover .link-row-arrow {
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    .link-row-icon {
+      font-size: 1rem;
+      color: var(--muted);
+      transition: color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .link-row-body {
+      flex: 1;
+    }
+
+    .link-row-label {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: color 0.2s;
+    }
+
+    .link-row-sub {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.1rem;
+    }
+
+    .link-row-arrow {
+      color: var(--muted);
+      font-size: 0.85rem;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    /* ── Two-col layout for writing + links ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    @media (max-width: 600px) {
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
       }
 
-      .page>*:nth-child(1) {
-        animation-delay: 0.04s;
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+    }
+
+    .footer-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 0.73rem;
+      color: var(--muted);
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Keyframes ── */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
       }
 
-      .page>*:nth-child(2) {
-        animation-delay: 0.08s;
+      .hero-eyebrow,
+      .hero-name,
+      .hero-title,
+      .typewriter-wrap,
+      .hero-cta {
+        opacity: 1;
+        animation: none;
       }
 
-      .page>*:nth-child(3) {
-        animation-delay: 0.12s;
+      .tw-cursor {
+        animation: none;
       }
 
-      .page>*:nth-child(4) {
-        animation-delay: 0.16s;
-      }
-
-      .page>*:nth-child(5) {
-        animation-delay: 0.20s;
-      }
-
-      .page>*:nth-child(6) {
-        animation-delay: 0.24s;
-      }
-
-      @keyframes fadein {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .dot {
+        animation: none;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="page" aria-label="Diyorbek Qodirboyev personal site">
 
-    <!-- Header -->
-    <header class="header">
-      <h1 class="name">Diyorbek Qodirboyev</h1>
-      <p class="subtitle">Self-taught Developer</p>
-      <p class="status">
-        <span class="dot" aria-hidden="true"></span>
-        Open to opportunities
-      </p>
-    </header>
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">dvrone</div>
+      <ul class="nav-links">
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="#links">Links</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <!-- Skills -->
-    <section aria-label="Skills">
-      <p class="section-label">Skills</p>
+  <!-- Hero -->
+  <div class="container">
+    <div class="hero">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Backend Developer</p>
+        <h1 class="hero-name">
+          Diyorbek<br /><span class="accent">Qodirboyev</span>
+        </h1>
+        <p class="hero-title">
+          Python · Django · Flask · FastAPI &mdash; no magic, just code.
+        </p>
+
+        <div class="typewriter-wrap">
+          <div class="typewriter-box">
+            <span class="tw-prompt">~$</span>
+            <span class="tw-text" id="tw-text"></span><span class="tw-cursor"></span>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-github" aria-hidden="true"></i> GitHub
+          </a>
+          <a class="btn btn-outline" href="mailto:diyorbekqodirboyev156@gmail.com">
+            <i class="bi bi-envelope" aria-hidden="true"></i> Get in touch
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Skills</span>
+        <div class="section-line"></div>
+      </div>
       <div class="skills-grid">
-        <div class="skill-group">
-          <h3>Languages</h3>
-          <ul>
-            <li>Python</li>
-            <li>JavaScript</li>
+        <div class="skill-card reveal">
+          <div class="skill-card-label">Languages</div>
+          <ul class="skill-list">
+            <li>
+              <span class="name"><i class="bi bi-braces"></i> Python</span>
+              <span class="skill-badge">proficient</span>
+            </li>
+            <li>
+              <span class="name"><i class="bi bi-braces"></i> JavaScript</span>
+              <span class="skill-badge">proficient</span>
+            </li>
           </ul>
         </div>
-        <div class="skill-group">
-          <h3>Frameworks</h3>
-          <ul>
-            <li>Flask</li>
-            <li>Django</li>
-            <li>FastAPI</li>
+        <div class="skill-card reveal">
+          <div class="skill-card-label">Frameworks</div>
+          <ul class="skill-list">
+            <li>
+              <span class="name"><i class="bi bi-layers"></i> Django</span>
+              <span class="skill-badge">proficient</span>
+            </li>
+            <li>
+              <span class="name"><i class="bi bi-layers"></i> Flask</span>
+              <span class="skill-badge">proficient</span>
+            </li>
+            <li>
+              <span class="name"><i class="bi bi-layers"></i> FastAPI</span>
+              <span class="skill-badge">proficient</span>
+            </li>
+            <li>
+              <span class="name"><i class="bi bi-cpu"></i> PyTorch</span>
+              <span class="skill-badge learning">learning</span>
+            </li>
           </ul>
         </div>
-        <div class="skill-group">
-          <h3>Tools</h3>
-          <ul>
-            <li>Git</li>
-            <li>Linux</li>
-            <li>Docker</li>
-            <li>VS Code</li>
+        <div class="skill-card reveal">
+          <div class="skill-card-label">Tools</div>
+          <ul class="skill-list">
+            <li><span class="name"><i class="bi bi-git"></i> Git</span></li>
+            <li><span class="name"><i class="bi bi-terminal"></i> Linux</span></li>
+            <li><span class="name"><i class="bi bi-box-seam"></i> Docker</span></li>
+            <li><span class="name"><i class="bi bi-code-slash"></i> VS Code</span></li>
+          </ul>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card-label">AI Assistants</div>
+          <ul class="skill-list">
+            <li>
+              <span class="name"><i class="bi bi-stars"></i> Claude Code</span>
+              <span class="skill-badge">daily</span>
+            </li>
+            <li>
+              <span class="name"><i class="bi bi-stars"></i> Codex</span>
+              <span class="skill-badge">daily</span>
+            </li>
           </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Projects -->
-    <section aria-label="Projects">
-      <p class="section-label">Projects</p>
-      <div class="projects">
+  <!-- Projects -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Projects</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-grid">
 
-        <a class="project" href="https://github.com/dvrone/shinobu-net" target="_blank" rel="noopener noreferrer">
-          <i class="bi bi-activity project-icon" aria-hidden="true"></i>
-          <span class="project-name">shinobu-net <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-          <span class="project-desc">Network anomaly analyzer for detecting DDoS, brute-force, and suspicious
-            traffic.</span>
-        </a>
+        <div class="project-card reveal">
+          <div class="project-top">
+            <i class="bi bi-activity project-icon" aria-hidden="true"></i>
+            <div class="project-links">
+              <a href="https://github.com/dvrone/shinobu-net" target="_blank" rel="noopener noreferrer" title="GitHub">
+                <i class="bi bi-github"></i>
+              </a>
+            </div>
+          </div>
+          <div class="project-name">shinobu-net</div>
+          <div class="project-desc">Network anomaly analyzer for detecting DDoS, brute-force, and suspicious traffic
+            patterns.</div>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Scapy</span>
+            <span class="tag">Flask</span>
+          </div>
+        </div>
 
-        <a class="project" href="https://github.com/dvrone/2EZ-exam" target="_blank" rel="noopener noreferrer">
-          <i class="bi bi-journal-check project-icon" aria-hidden="true"></i>
-          <span class="project-name">2EZ-exam <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-          <span class="project-desc">Flask-based online examination platform.</span>
-        </a>
+        <div class="project-card reveal">
+          <div class="project-top">
+            <i class="bi bi-journal-check project-icon" aria-hidden="true"></i>
+            <div class="project-links">
+              <a href="https://github.com/dvrone/2EZ-exam" target="_blank" rel="noopener noreferrer" title="GitHub">
+                <i class="bi bi-github"></i>
+              </a>
+              <a href="https://exams2ez.pythonanywhere.com" target="_blank" rel="noopener noreferrer" title="Live">
+                <i class="bi bi-box-arrow-up-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="project-name">2EZ-exam</div>
+          <div class="project-desc">Flask-based online examination platform with Google OAuth, XP system, and
+            Duolingo-style quizzes.</div>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Flask</span>
+            <span class="tag">SQLAlchemy</span>
+            <span class="tag">PWA</span>
+          </div>
+        </div>
 
-        <a class="project" href="https://github.com/dvrone/het-bot" target="_blank" rel="noopener noreferrer">
-          <i class="bi bi-robot project-icon" aria-hidden="true"></i>
-          <span class="project-name">het-bot <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-          <span class="project-desc">Asynchronous Telegram bot for citizen registration and application
-            management.</span>
-        </a>
+        <div class="project-card reveal">
+          <div class="project-top">
+            <i class="bi bi-robot project-icon" aria-hidden="true"></i>
+            <div class="project-links">
+              <a href="https://github.com/dvrone/het-bot" target="_blank" rel="noopener noreferrer" title="GitHub">
+                <i class="bi bi-github"></i>
+              </a>
+            </div>
+          </div>
+          <div class="project-name">het-bot</div>
+          <div class="project-desc">Async Telegram bot for citizen registration and application management.
+            Multilingual, Docker-deployed.</div>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Aiogram</span>
+            <span class="tag">SQLAlchemy</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
 
-        <a class="project" href="https://github.com/dvrone/my-website" target="_blank" rel="noopener noreferrer">
-          <i class="bi bi-globe project-icon" aria-hidden="true"></i>
-          <span class="project-name">my-website <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-          <span class="project-desc">Personal portfolio website.</span>
-        </a>
+        <div class="project-card reveal">
+          <div class="project-top">
+            <i class="bi bi-globe project-icon" aria-hidden="true"></i>
+            <div class="project-links">
+              <a href="https://github.com/dvrone/my-website" target="_blank" rel="noopener noreferrer" title="GitHub">
+                <i class="bi bi-github"></i>
+              </a>
+            </div>
+          </div>
+          <div class="project-name">my-website</div>
+          <div class="project-desc">Personal portfolio website — this page.</div>
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JS</span>
+          </div>
+        </div>
 
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Writing -->
-    <section aria-label="Writing">
-      <p class="section-label">Writing</p>
-      <div class="link-list">
-        <a class="link-item" href="https://medium.com/@dvrone" target="_blank" rel="noopener noreferrer">
-          <i class="bi bi-medium" aria-hidden="true"></i>
-          <span class="link-label">Medium</span>
-          <i class="bi bi-arrow-right link-arrow" aria-hidden="true"></i>
-        </a>
-        <a class="link-item" href="https://bsky.app/profile/dvrone.bsky.social" target="_blank"
-          rel="noopener noreferrer">
-          <i class="bi bi-cloud" aria-hidden="true"></i>
-          <span class="link-label">Bluesky</span>
-          <i class="bi bi-arrow-right link-arrow" aria-hidden="true"></i>
-        </a>
+  <!-- Writing + Links -->
+  <section id="writing">
+    <div class="container">
+      <div class="two-col">
+
+        <!-- Writing -->
+        <div>
+          <div class="section-header reveal">
+            <span class="section-tag">Writing</span>
+            <div class="section-line"></div>
+          </div>
+          <div class="link-rows">
+            <a class="link-row reveal" href="https://medium.com/@dvrone" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-medium link-row-icon" aria-hidden="true"></i>
+              <div class="link-row-body">
+                <div class="link-row-label">Medium</div>
+                <div class="link-row-sub">@dvrone</div>
+              </div>
+              <i class="bi bi-arrow-right link-row-arrow" aria-hidden="true"></i>
+            </a>
+            <a class="link-row reveal" href="https://bsky.app/profile/dvrone.bsky.social" target="_blank"
+              rel="noopener noreferrer">
+              <i class="bi bi-cloud link-row-icon" aria-hidden="true"></i>
+              <div class="link-row-body">
+                <div class="link-row-label">Bluesky</div>
+                <div class="link-row-sub">dvrone.bsky.social</div>
+              </div>
+              <i class="bi bi-arrow-right link-row-arrow" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div id="links">
+          <div class="section-header reveal">
+            <span class="section-tag">Links</span>
+            <div class="section-line"></div>
+          </div>
+          <div class="link-rows">
+            <a class="link-row reveal" href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-github link-row-icon" aria-hidden="true"></i>
+              <div class="link-row-body">
+                <div class="link-row-label">GitHub</div>
+                <div class="link-row-sub">dvrone</div>
+              </div>
+              <i class="bi bi-arrow-right link-row-arrow" aria-hidden="true"></i>
+            </a>
+            <a class="link-row reveal" href="https://linkedin.com/in/dvrone" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-linkedin link-row-icon" aria-hidden="true"></i>
+              <div class="link-row-body">
+                <div class="link-row-label">LinkedIn</div>
+                <div class="link-row-sub">dvrone</div>
+              </div>
+              <i class="bi bi-arrow-right link-row-arrow" aria-hidden="true"></i>
+            </a>
+            <a class="link-row reveal" href="https://x.com/dvrcore" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-twitter-x link-row-icon" aria-hidden="true"></i>
+              <div class="link-row-body">
+                <div class="link-row-label">X</div>
+                <div class="link-row-sub">@dvrcore</div>
+              </div>
+              <i class="bi bi-arrow-right link-row-arrow" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Links -->
-    <section aria-label="Links">
-      <p class="section-label">Links</p>
-      <div class="link-list">
-        <a class="link-item" href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer">
-          <i class="bi bi-github" aria-hidden="true"></i>
-          <span class="link-label">GitHub</span>
-          <i class="bi bi-arrow-right link-arrow" aria-hidden="true"></i>
-        </a>
-        <a class="link-item" href="https://linkedin.com/in/dvrone" target="_blank" rel="noopener noreferrer">
-          <i class="bi bi-linkedin" aria-hidden="true"></i>
-          <span class="link-label">LinkedIn</span>
-          <i class="bi bi-arrow-right link-arrow" aria-hidden="true"></i>
-        </a>
-        <a class="link-item" href="https://x.com/dvrcore" target="_blank" rel="noopener noreferrer">
-          <i class="bi bi-twitter-x" aria-hidden="true"></i>
-          <span class="link-label">X</span>
-          <i class="bi bi-arrow-right link-arrow" aria-hidden="true"></i>
-        </a>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      &copy; <span id="year"></span> Diyorbek Qodirboyev
-    </footer>
-
-  </main>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-copy">&copy; <span id="year"></span> Diyorbek Qodirboyev</div>
+      <div class="footer-copy">Built with HTML, CSS &amp; JS</div>
+    </div>
+  </footer>
 
   <script>
+    // ── Copyright year ──
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ── Typewriter ──
+    const phrases = [
+      "python manage.py runserver",
+      "flask run --debug",
+      "git commit -m 'fix: edge case'",
+      "docker compose up -d",
+      "uvicorn main:app --reload",
+    ];
+    const el = document.getElementById("tw-text");
+    let pi = 0, ci = 0, deleting = false;
+
+    function tick() {
+      const phrase = phrases[pi];
+      if (!deleting) {
+        el.textContent = phrase.slice(0, ++ci);
+        if (ci === phrase.length) {
+          deleting = true;
+          setTimeout(tick, 1800);
+          return;
+        }
+      } else {
+        el.textContent = phrase.slice(0, --ci);
+        if (ci === 0) {
+          deleting = false;
+          pi = (pi + 1) % phrases.length;
+        }
+      }
+      setTimeout(tick, deleting ? 35 : 65);
+    }
+
+    // Start typewriter after hero animations settle
+    setTimeout(tick, 1200);
+
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } }),
+      { threshold: 0.12 }
+    );
+
+    document.querySelectorAll(".reveal").forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 4) * 0.07}s`;
+      observer.observe(el);
+    });
   </script>
 </body>
 
