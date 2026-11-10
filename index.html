@@ -4,422 +4,203 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diyorbek Qodirboyev | Cybersecurity</title>
+  <title>Diyorbek Qodirboyev | Web Developer</title>
 
-  <meta name="description"
-    content="Diyorbek Qodirboyev: cybersecurity engineering student learning security by building tools in Python." />
+  <meta name="description" content="Diyorbek Qodirboyev: web developer building with Python and Flask." />
   <meta name="author" content="Diyorbek Qodirboyev" />
-  <meta property="og:title" content="Diyorbek Qodirboyev | Cybersecurity" />
-  <meta property="og:description" content="Cybersecurity student. Learning security by building it." />
+  <meta property="og:title" content="Diyorbek Qodirboyev | Web Developer" />
+  <meta property="og:description" content="Web developer. Python and Flask." />
   <meta property="og:type" content="website" />
 
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
 
   <style>
-    /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
-    /* ── Tokens: terminal / cybersecurity theme ── */
     :root {
-      --bg: #04080a;
-      --bg2: #08110f;
-      --border: #0f2e22;
-      --border-h: #1b5a3f;
-      --text: #9fbfae;
-      --muted: #4f7060;
-      --heading: #d8fbe8;
-      --accent: #00ff9c;
-      --accent-h: #5dffbf;
-      --accent-dim: rgba(0, 255, 156, 0.08);
-      --glow: 0 0 12px rgba(0, 255, 156, 0.35);
-      --cyan: #22d3ee;
-      --radius: 3px;
-      --page: 860px;
-      --sans: "Inter", sans-serif;
-      --mono: "JetBrains Mono", monospace;
+      --bg: #e8edf2;
+      --panel: #f6f8fa;
+      --ink: #0e1a2b;
+      --muted: #556579;
+      --line: #c6d0db;
+      --accent: #1f3bff;
+      --accent-ink: #ffffff;
+      --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+      --body: "IBM Plex Sans", system-ui, sans-serif;
     }
 
-    /* ── Base ── */
-    body { font-family: var(--mono); background: var(--bg); color: var(--text); line-height: 1.65; overflow-x: hidden; }
-    a { text-decoration: none; color: inherit; }
-    ::selection { background: var(--accent); color: var(--bg); }
+    body {
+      font-family: var(--body); background: var(--bg); color: var(--ink);
+      line-height: 1.6; font-size: 1rem;
+    }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--accent); color: var(--accent-ink); }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 
-    /* CRT scanlines */
-    body::after {
-      content: ""; position: fixed; inset: 0; z-index: 999; pointer-events: none;
-      background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.18) 0, rgba(0, 0, 0, 0.18) 1px, transparent 1px, transparent 3px);
-      opacity: 0.5;
+    /* ── Layout: fixed identity column + scrolling content ── */
+    .page {
+      max-width: 1120px; margin: 0 auto; padding: 0 2rem;
+      display: grid; grid-template-columns: 340px 1fr; gap: 5rem;
     }
 
-    /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border-h); }
-
-    /* ── Layout ── */
-    .container { max-width: var(--page); margin: 0 auto; padding: 0 1.5rem; }
-
-    /* ── Nav ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 56px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(4, 8, 10, 0.88);
-      backdrop-filter: blur(10px);
+    .identity {
+      position: sticky; top: 0; align-self: start; height: 100dvh;
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 4rem 0 3rem;
     }
-    .nav-inner { max-width: var(--page); margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-size: 0.85rem; color: var(--accent); text-shadow: var(--glow); }
-    .nav-logo::before { content: "root@"; color: var(--muted); text-shadow: none; }
-    .nav-logo::after { content: ":~#"; color: var(--muted); text-shadow: none; }
-    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
-    .nav-links a { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.2s, text-shadow 0.2s; }
-    .nav-links a::before { content: "./"; opacity: 0.6; }
-    .nav-links a:hover { color: var(--accent); text-shadow: var(--glow); }
-
-    /* ── Hero ── */
-    .hero { min-height: 100dvh; display: flex; align-items: center; padding-top: 56px; position: relative; overflow: hidden; }
-    .hero::before {
-      content: ""; position: absolute; inset: 0;
-      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 40px 40px; opacity: 0.45; pointer-events: none;
-    }
-    .hero::after {
-      content: ""; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 55%, rgba(0, 255, 156, 0.06) 0%, transparent 45%, var(--bg) 100%);
-      pointer-events: none;
-    }
-    .hero-content { position: relative; z-index: 1; padding: 3rem 0; }
-    .hero-eyebrow {
-      font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 1.25rem;
-      opacity: 0; animation: fadeUp 0.5s ease 0.2s both;
-    }
-    .hero-eyebrow::before { content: "[+] "; }
     h1 {
-      font-family: var(--mono); font-size: clamp(2.4rem, 8vw, 4.2rem); font-weight: 700; color: var(--heading);
-      line-height: 1.08; letter-spacing: -0.04em;
-      opacity: 0; animation: fadeUp 0.5s ease 0.35s both;
+      font-family: var(--display); font-weight: 800; font-size: clamp(3rem, 6vw, 4.6rem);
+      line-height: 0.92; letter-spacing: -0.045em;
     }
-    h1 .accent { color: var(--accent); text-shadow: 0 0 22px rgba(0, 255, 156, 0.5); }
-    .hero-sub {
-      margin-top: 1rem; font-family: var(--sans); font-size: clamp(0.95rem, 2.5vw, 1.15rem); font-weight: 300; color: var(--muted);
-      opacity: 0; animation: fadeUp 0.5s ease 0.5s both;
+    h1 span { display: block; color: var(--accent); }
+    .role { margin-top: 1.5rem; font-size: 1.05rem; color: var(--muted); max-width: 26ch; }
+    .contact { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 2rem; }
+    .contact a {
+      display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 500; width: fit-content;
+      border-bottom: 1px solid var(--line); padding-bottom: 0.15rem;
+      transition: border-color 0.2s, color 0.2s;
     }
-    .typewriter-wrap { margin-top: 2rem; opacity: 0; animation: fadeUp 0.5s ease 0.65s both; }
-    .typewriter-box {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      background: var(--bg2); border: 1px solid var(--border-h); border-radius: var(--radius);
-      padding: 0.65rem 1rem; font-size: 0.82rem; color: var(--heading);
-      box-shadow: var(--glow), inset 0 0 18px rgba(0, 255, 156, 0.04);
+    .contact a:hover { color: var(--accent); border-color: var(--accent); }
+    .identity small { color: var(--muted); font-size: 0.8rem; }
+
+    /* ── Content ── */
+    main { padding: 4rem 0 5rem; }
+    .block + .block { margin-top: 4.5rem; }
+    h2 {
+      font-family: var(--display); font-weight: 700; font-size: 1.9rem;
+      letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.4rem;
     }
-    .tw-prompt { color: var(--accent); user-select: none; }
-    .tw-cursor { display: inline-block; width: 8px; height: 1.05em; background: var(--accent); margin-left: 1px; vertical-align: middle; animation: blink 1s step-end infinite; }
-    .hero-cta { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem; opacity: 0; animation: fadeUp 0.5s ease 0.8s both; }
+    .block > p.lead { color: var(--muted); max-width: 52ch; margin-bottom: 1.75rem; }
 
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.6rem 1.25rem;
-      border-radius: var(--radius); font-family: var(--mono); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.03em;
-      border: 1px solid var(--accent); cursor: pointer;
-      transition: background 0.15s, color 0.15s, box-shadow 0.15s, transform 0.1s;
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); background: var(--panel); }
+    .skills > div { padding: 1.4rem 1.4rem 1.6rem; }
+    .skills > div + div { border-left: 1px solid var(--line); }
+    .skills h3 { font-size: 0.9rem; font-weight: 500; color: var(--muted); margin-bottom: 0.9rem; }
+    .skills ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+    .skills li { display: flex; align-items: center; gap: 0.6rem; font-family: var(--display); font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; }
+    .skills li i { color: var(--accent); font-size: 1.05rem; }
+
+    /* Certificates */
+    .cert-group + .cert-group { margin-top: 2rem; }
+    .cert-group h3 { font-size: 0.9rem; font-weight: 500; color: var(--muted); margin-bottom: 0.5rem; }
+    .certs { list-style: none; border-top: 1px solid var(--ink); }
+    .certs a {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: 0.95rem 0.25rem; border-bottom: 1px solid var(--line);
+      font-weight: 500; transition: background 0.15s, padding 0.15s, color 0.15s;
     }
-    .btn:active { transform: scale(0.97); }
-    .btn-primary { background: var(--accent); color: var(--bg); }
-    .btn-primary:hover { background: var(--accent-h); box-shadow: var(--glow); }
-    .btn-outline { background: transparent; color: var(--accent); }
-    .btn-outline:hover { background: var(--accent-dim); box-shadow: var(--glow); }
-    a:focus-visible, .btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+    .certs a i { color: var(--muted); transition: color 0.15s, transform 0.15s; }
+    .certs a:hover { background: var(--panel); padding-left: 0.75rem; color: var(--accent); }
+    .certs a:hover i { color: var(--accent); transform: translate(2px, -2px); }
 
-    /* ── Sections ── */
-    section { padding: 5rem 0; border-top: 1px solid var(--border); }
-    .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem; }
-    .section-tag { font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.14em; white-space: nowrap; text-shadow: var(--glow); }
-    .section-tag::before { content: "# "; opacity: 0.6; }
-    .section-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--border-h), transparent); }
-
-    /* ── Skills ── */
-    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-    .skill-card {
-      position: relative; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 1.25rem; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    .skill-card::before, .skill-card::after { content: ""; position: absolute; width: 10px; height: 10px; border: 2px solid var(--accent); opacity: 0.7; }
-    .skill-card::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
-    .skill-card::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
-    .skill-card:hover { border-color: var(--border-h); box-shadow: var(--glow); transform: translateY(-2px); }
-    .skill-card-label { font-size: 0.66rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1rem; }
-    .skill-card-label::before { content: "$ "; color: var(--accent); }
-    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .skill-list li { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; gap: 0.5rem; }
-    .skill-list li .name { display: flex; align-items: center; gap: 0.5rem; color: var(--text); }
-    .skill-list li i { color: var(--muted); }
-    .badge { font-size: 0.6rem; padding: 0.15rem 0.5rem; border-radius: var(--radius); white-space: nowrap; text-transform: uppercase; letter-spacing: 0.06em; }
-    .badge-accent { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(0, 255, 156, 0.25); }
-    .badge-green { background: rgba(34, 211, 238, 0.08); color: var(--cyan); border: 1px solid rgba(34, 211, 238, 0.25); }
-
-    /* ── Writing + Links ── */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-    .two-col-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-    .link-rows { display: flex; flex-direction: column; gap: 0.5rem; }
-    .link-row {
-      display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem;
-      background: var(--bg2); border: 1px solid var(--border); border-left: 2px solid var(--border-h); border-radius: var(--radius);
-      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-    }
-    .link-row:hover { border-color: var(--accent); background: var(--accent-dim); box-shadow: var(--glow); }
-    .link-row-icon { font-size: 1rem; color: var(--muted); flex-shrink: 0; transition: color 0.2s; }
-    .link-row:hover .link-row-icon { color: var(--accent); }
-    .link-row-body { flex: 1; min-width: 0; }
-    .link-row-label { font-size: 0.85rem; font-weight: 500; color: var(--text); transition: color 0.2s; }
-    .link-row:hover .link-row-label { color: var(--heading); }
-    .link-row-sub { font-size: 0.68rem; color: var(--muted); margin-top: 0.1rem; }
-    .link-row-arrow { color: var(--muted); font-size: 0.8rem; transition: color 0.2s, transform 0.2s; }
-    .link-row:hover .link-row-arrow { color: var(--accent); transform: translateX(3px); }
-
-    /* ── Footer ── */
-    footer { border-top: 1px solid var(--border); padding: 1.5rem 0; }
-    .footer-inner { max-width: var(--page); margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
-    .footer-text { font-size: 0.7rem; color: var(--muted); }
-
-    /* ── Scroll reveal ── */
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── Keyframes ── */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes blink { 50% { opacity: 0; } }
+    footer { margin-top: 4.5rem; color: var(--muted); font-size: 0.8rem; }
 
     /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .skills-grid { grid-template-columns: repeat(2, 1fr); }
-      .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
-      .nav-links { display: none; }
+    @media (max-width: 900px) {
+      .page { grid-template-columns: 1fr; gap: 0; padding: 0 1.25rem; }
+      .identity { position: static; height: auto; padding: 3rem 0 2rem; gap: 2rem; }
+      .identity small { display: none; }
+      main { padding-top: 2rem; }
     }
-    @media (max-width: 480px) {
-      .skills-grid { grid-template-columns: 1fr; }
+    @media (max-width: 640px) {
+      .skills { grid-template-columns: 1fr; }
+      .skills > div + div { border-left: 0; border-top: 1px solid var(--line); }
     }
-
-    /* ── Reduced motion ── */
     @media (prefers-reduced-motion: reduce) {
-      .reveal { opacity: 1; transform: none; transition: none; }
-      .hero-eyebrow, h1, .hero-sub, .typewriter-wrap, .hero-cta { opacity: 1; animation: none; }
-      .tw-cursor { animation: none; }
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
     }
   </style>
 </head>
 
 <body>
+  <div class="page">
 
-  <!-- Nav -->
-  <nav>
-    <div class="nav-inner">
-      <span class="nav-logo">dvrone</span>
-      <ul class="nav-links">
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#writing">Writing</a></li>
-        <li><a href="#links">Links</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <div class="container">
-    <div class="hero">
-      <div class="hero-content">
-        <p class="hero-eyebrow">Cybersecurity Student</p>
-        <h1>Diyorbek<br /><span class="accent">Qodirboyev</span></h1>
-        <p class="hero-sub">Learning security by building it. Python, networks, cryptography.</p>
-        <div class="typewriter-wrap">
-          <div class="typewriter-box">
-            <span class="tw-prompt">~$</span>
-            <span id="tw-text"></span>
-            <span class="tw-cursor"></span>
-          </div>
-        </div>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer">
-            <i class="bi bi-github" aria-hidden="true"></i> GitHub
-          </a>
-          <a class="btn btn-outline" href="mailto:diyorbekqodirboyev156@gmail.com">
-            <i class="bi bi-envelope" aria-hidden="true"></i> Get in touch
-          </a>
+    <header class="identity">
+      <div>
+        <h1>Diyorbek <span>Qodirboyev</span></h1>
+        <p class="role">Web developer building with Python and Flask.</p>
+        <div class="contact">
+          <a href="mailto:kodirboev@proton.me"><i class="bi bi-envelope" aria-hidden="true"></i> kodirboev@proton.me</a>
+          <a href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i> github.com/dvrone</a>
         </div>
       </div>
-    </div>
+      <small>&copy; <span id="year"></span> Diyorbek Qodirboyev</small>
+    </header>
+
+    <main>
+      <section class="block" id="skills">
+        <h2>Skills</h2>
+        <p class="lead">What I use day to day.</p>
+        <div class="skills">
+          <div>
+            <h3>Language</h3>
+            <ul><li><i class="bi bi-braces" aria-hidden="true"></i> Python</li></ul>
+          </div>
+          <div>
+            <h3>Framework</h3>
+            <ul><li><i class="bi bi-layers" aria-hidden="true"></i> Flask</li></ul>
+          </div>
+          <div>
+            <h3>Tools</h3>
+            <ul>
+              <li><i class="bi bi-terminal" aria-hidden="true"></i> Linux</li>
+              <li><i class="bi bi-git" aria-hidden="true"></i> Git</li>
+              <li><i class="bi bi-code-slash" aria-hidden="true"></i> Neovim</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="certificates">
+        <h2>Certificates</h2>
+        <p class="lead">11 courses completed on SoloLearn. Each one opens its certificate.</p>
+
+        <div class="cert-group">
+          <h3>Web</h3>
+          <ul class="certs">
+            <li><a href="https://www.sololearn.com/certificates/CC-1PQBJBBJ" target="_blank" rel="noopener noreferrer">HTML <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
+            <li><a href="https://www.sololearn.com/certificates/CC-UDZZTQKR" target="_blank" rel="noopener noreferrer">CSS <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
+            <li><a href="https://www.sololearn.com/certificates/CC-YOBGLOPK" target="_blank" rel="noopener noreferrer">JavaScript <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
+            <li><a href="https://www.sololearn.com/certificates/CC-42JDPEAJ" target="_blank" rel="noopener noreferrer">Web Development <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>
+
+        <div class="cert-group">
+          <h3>Python</h3>
+          <ul class="certs">
+            <li><a href="https://www.sololearn.com/certificates/CC-JTIHM0XZ" target="_blank" rel="noopener noreferrer">Introduction to Python <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
+            <li><a href="https://www.sololearn.com/certificates/CC-XYQZOWKC" target="_blank" rel="noopener noreferrer">Python Intermediate <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
+            <li><a href="https://www.sololearn.com/certificates/CC-EI3QTN6M" target="_blank" rel="noopener noreferrer">Python Developer <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>
+
+        <div class="cert-group">
+          <h3>AI and data</h3>
+          <ul class="certs">
+            <li><a href="https://www.sololearn.com/certificates/CC-3BS6UHDU" target="_blank" rel="noopener noreferrer">Meet Claude <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
+            <li><a href="https://www.sololearn.com/certificates/CC-OHANR0GY" target="_blank" rel="noopener noreferrer">Prompt Engineering <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
+            <li><a href="https://www.sololearn.com/certificates/CC-UQPUTDTB" target="_blank" rel="noopener noreferrer">Data Analytics with AI <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
+            <li><a href="https://www.sololearn.com/certificates/CC-4DLX6RXO" target="_blank" rel="noopener noreferrer">Tech for Everyone <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>
+      </section>
+
+      <footer>Built with HTML &amp; CSS</footer>
+    </main>
+
   </div>
-
-  <!-- Skills -->
-  <section id="skills">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">Skills</span>
-        <div class="section-line"></div>
-      </div>
-      <div class="skills-grid">
-
-        <div class="skill-card reveal">
-          <p class="skill-card-label">Languages</p>
-          <ul class="skill-list">
-            <li><span class="name"><i class="bi bi-braces"></i> Python</span><span
-                class="badge badge-accent">proficient</span></li>
-            <li><span class="name"><i class="bi bi-braces"></i> JavaScript</span><span
-                class="badge badge-accent">proficient</span></li>
-          </ul>
-        </div>
-
-        <div class="skill-card reveal">
-          <p class="skill-card-label">Frameworks</p>
-          <ul class="skill-list">
-            <li><span class="name"><i class="bi bi-layers"></i> Django</span><span
-                class="badge badge-accent">proficient</span></li>
-            <li><span class="name"><i class="bi bi-layers"></i> Flask</span><span
-                class="badge badge-accent">proficient</span></li>
-            <li><span class="name"><i class="bi bi-layers"></i> FastAPI</span><span
-                class="badge badge-accent">proficient</span></li>
-            <li><span class="name"><i class="bi bi-cpu"></i> PyTorch</span><span
-                class="badge badge-green">learning</span></li>
-          </ul>
-        </div>
-
-        <div class="skill-card reveal">
-          <p class="skill-card-label">Tools</p>
-          <ul class="skill-list">
-            <li><span class="name"><i class="bi bi-git"></i> Git</span></li>
-            <li><span class="name"><i class="bi bi-terminal"></i> Linux</span></li>
-            <li><span class="name"><i class="bi bi-box-seam"></i> Docker</span></li>
-            <li><span class="name"><i class="bi bi-code-slash"></i> VS Code</span></li>
-          </ul>
-        </div>
-
-        <div class="skill-card reveal">
-          <p class="skill-card-label">AI Assistants</p>
-          <ul class="skill-list">
-            <li><span class="name"><i class="bi bi-stars"></i> Claude Code</span><span
-                class="badge badge-accent">daily</span></li>
-            <li><span class="name"><i class="bi bi-stars"></i> Codex</span><span class="badge badge-accent">daily</span>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Writing + Links -->
-  <section id="writing">
-    <div class="container">
-      <div class="two-col">
-
-        <div>
-          <div class="two-col-header reveal">
-            <span class="section-tag">Writing</span>
-            <div class="section-line"></div>
-          </div>
-          <div class="link-rows">
-            <a class="link-row reveal" href="https://medium.com/@dvrone" target="_blank" rel="noopener noreferrer">
-              <i class="bi bi-medium link-row-icon" aria-hidden="true"></i>
-              <div class="link-row-body">
-                <p class="link-row-label">Medium</p>
-                <p class="link-row-sub">@dvrone</p>
-              </div>
-              <i class="bi bi-arrow-right link-row-arrow" aria-hidden="true"></i>
-            </a>
-            <a class="link-row reveal" href="https://bsky.app/profile/dvrone.bsky.social" target="_blank"
-              rel="noopener noreferrer">
-              <i class="bi bi-cloud link-row-icon" aria-hidden="true"></i>
-              <div class="link-row-body">
-                <p class="link-row-label">Bluesky</p>
-                <p class="link-row-sub">dvrone.bsky.social</p>
-              </div>
-              <i class="bi bi-arrow-right link-row-arrow" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
-        <div id="links">
-          <div class="two-col-header reveal">
-            <span class="section-tag">Links</span>
-            <div class="section-line"></div>
-          </div>
-          <div class="link-rows">
-            <a class="link-row reveal" href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer">
-              <i class="bi bi-github link-row-icon" aria-hidden="true"></i>
-              <div class="link-row-body">
-                <p class="link-row-label">GitHub</p>
-                <p class="link-row-sub">dvrone</p>
-              </div>
-              <i class="bi bi-arrow-right link-row-arrow" aria-hidden="true"></i>
-            </a>
-            <a class="link-row reveal" href="https://linkedin.com/in/dvrone" target="_blank" rel="noopener noreferrer">
-              <i class="bi bi-linkedin link-row-icon" aria-hidden="true"></i>
-              <div class="link-row-body">
-                <p class="link-row-label">LinkedIn</p>
-                <p class="link-row-sub">dvrone</p>
-              </div>
-              <i class="bi bi-arrow-right link-row-arrow" aria-hidden="true"></i>
-            </a>
-            <a class="link-row reveal" href="https://x.com/dvrcore" target="_blank" rel="noopener noreferrer">
-              <i class="bi bi-twitter-x link-row-icon" aria-hidden="true"></i>
-              <div class="link-row-body">
-                <p class="link-row-label">X</p>
-                <p class="link-row-sub">@dvrcore</p>
-              </div>
-              <i class="bi bi-arrow-right link-row-arrow" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-inner">
-      <span class="footer-text">&copy; <span id="year"></span> Diyorbek Qodirboyev</span>
-      <span class="footer-text">Built with HTML &amp; CSS</span>
-    </div>
-  </footer>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    const phrases = [
-      "nmap -sV 192.168.1.1",
-      "tcpdump -i eth0 port 443",
-      "openssl rand -hex 32",
-      "sudo ufw status verbose",
-      "git commit -m 'fix: IDOR check'",
-    ];
-    const el = document.getElementById("tw-text");
-    let pi = 0, ci = 0, deleting = false;
-    function tick() {
-      const phrase = phrases[pi];
-      if (!deleting) {
-        el.textContent = phrase.slice(0, ++ci);
-        if (ci === phrase.length) { deleting = true; setTimeout(tick, 1800); return; }
-      } else {
-        el.textContent = phrase.slice(0, --ci);
-        if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
-      }
-      setTimeout(tick, deleting ? 35 : 65);
-    }
-    setTimeout(tick, 1200);
-
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); }
-      }),
-      { threshold: 0.1 }
-    );
-    document.querySelectorAll(".reveal").forEach((el, i) => {
-      el.style.transitionDelay = `${(i % 4) * 0.07}s`;
-      observer.observe(el);
-    });
   </script>
 </body>
 
