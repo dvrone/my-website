@@ -11,145 +11,184 @@
   <meta property="og:title" content="Diyorbek Qodirboyev | Web Developer" />
   <meta property="og:description" content="Web developer. Python and Flask." />
   <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#08080d" />
 
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
 
     :root {
-      --bg: #e8edf2;
-      --panel: #f6f8fa;
-      --ink: #0e1a2b;
-      --muted: #556579;
-      --line: #c6d0db;
-      --accent: #1f3bff;
-      --accent-ink: #ffffff;
-      --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
-      --body: "IBM Plex Sans", system-ui, sans-serif;
+      --bg: #08080d;
+      --card: rgba(255, 255, 255, 0.04);
+      --card-h: rgba(255, 255, 255, 0.07);
+      --line: rgba(255, 255, 255, 0.09);
+      --line-h: rgba(139, 124, 255, 0.55);
+      --text: #aab0c0;
+      --heading: #f4f5fa;
+      --muted: #727890;
+      --a1: #8b7cff;
+      --a2: #38bdf8;
+      --grad: linear-gradient(135deg, var(--a1), var(--a2));
+      --radius: 20px;
+      --page: 1040px;
+      --font: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
     }
 
     body {
-      font-family: var(--body); background: var(--bg); color: var(--ink);
-      line-height: 1.6; font-size: 1rem;
+      font-family: var(--font); background: var(--bg); color: var(--text);
+      line-height: 1.65; overflow-x: hidden; -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; text-decoration: none; }
-    ::selection { background: var(--accent); color: var(--accent-ink); }
-    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    ::selection { background: var(--a1); color: #fff; }
+    a:focus-visible { outline: 2px solid var(--a2); outline-offset: 3px; }
 
-    /* ── Layout: fixed identity column + scrolling content ── */
-    .page {
-      max-width: 1120px; margin: 0 auto; padding: 0 2rem;
-      display: grid; grid-template-columns: 340px 1fr; gap: 5rem;
-    }
+    /* Ambient glow */
+    .glow { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+    .glow::before, .glow::after { content: ""; position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0.35; }
+    .glow::before { width: 560px; height: 560px; background: #6a4dff; top: -180px; left: -140px; }
+    .glow::after { width: 480px; height: 480px; background: #0ea5e9; bottom: -160px; right: -120px; opacity: 0.25; }
 
-    .identity {
-      position: sticky; top: 0; align-self: start; height: 100dvh;
-      display: flex; flex-direction: column; justify-content: space-between;
-      padding: 4rem 0 3rem;
+    .container { max-width: var(--page); margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Floating nav */
+    nav {
+      position: fixed; top: 1rem; left: 50%; transform: translateX(-50%); z-index: 50;
+      display: flex; align-items: center; gap: 0.25rem; padding: 0.4rem;
+      background: rgba(14, 14, 22, 0.7); border: 1px solid var(--line); border-radius: 999px;
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
     }
+    nav a { font-size: 0.82rem; font-weight: 500; color: var(--text); padding: 0.45rem 1rem; border-radius: 999px; transition: background 0.2s, color 0.2s; }
+    nav a:hover { background: var(--card-h); color: var(--heading); }
+
+    /* Hero */
+    .hero { min-height: 100dvh; display: flex; align-items: center; padding: 6rem 0 4rem; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; color: var(--heading);
+      padding: 0.4rem 0.9rem; border: 1px solid var(--line); border-radius: 999px; background: var(--card);
+    }
+    .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--grad); }
     h1 {
-      font-family: var(--display); font-weight: 800; font-size: clamp(3rem, 6vw, 4.6rem);
-      line-height: 0.92; letter-spacing: -0.045em;
+      margin-top: 1.5rem; font-size: clamp(2.8rem, 9vw, 5.6rem); font-weight: 800; line-height: 1.02;
+      letter-spacing: -0.045em; color: var(--heading);
     }
-    h1 span { display: block; color: var(--accent); }
-    .role { margin-top: 1.5rem; font-size: 1.05rem; color: var(--muted); max-width: 26ch; }
-    .contact { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 2rem; }
-    .contact a {
-      display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 500; width: fit-content;
-      border-bottom: 1px solid var(--line); padding-bottom: 0.15rem;
-      transition: border-color 0.2s, color 0.2s;
+    h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero p.sub { margin-top: 1.5rem; font-size: clamp(1.05rem, 2.4vw, 1.3rem); max-width: 34ch; color: var(--text); }
+    .cta { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.4rem; border-radius: 999px;
+      font-size: 0.9rem; font-weight: 600; transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
     }
-    .contact a:hover { color: var(--accent); border-color: var(--accent); }
-    .identity small { color: var(--muted); font-size: 0.8rem; }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: var(--grad); color: #0a0a12; box-shadow: 0 8px 30px -8px rgba(139, 124, 255, 0.6); }
+    .btn-primary:hover { box-shadow: 0 10px 38px -6px rgba(139, 124, 255, 0.85); }
+    .btn-ghost { border: 1px solid var(--line); background: var(--card); color: var(--heading); }
+    .btn-ghost:hover { background: var(--card-h); }
 
-    /* ── Content ── */
-    main { padding: 4rem 0 5rem; }
-    .block + .block { margin-top: 4.5rem; }
-    h2 {
-      font-family: var(--display); font-weight: 700; font-size: 1.9rem;
-      letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.4rem;
+    /* Sections */
+    section { padding: 4.5rem 0; }
+    .sec-head { margin-bottom: 2rem; }
+    h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 800; letter-spacing: -0.035em; color: var(--heading); }
+    .sec-head p { margin-top: 0.4rem; color: var(--muted); }
+
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     }
-    .block > p.lead { color: var(--muted); max-width: 52ch; margin-bottom: 1.75rem; }
 
     /* Skills */
-    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); background: var(--panel); }
-    .skills > div { padding: 1.4rem 1.4rem 1.6rem; }
-    .skills > div + div { border-left: 1px solid var(--line); }
-    .skills h3 { font-size: 0.9rem; font-weight: 500; color: var(--muted); margin-bottom: 0.9rem; }
-    .skills ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
-    .skills li { display: flex; align-items: center; gap: 0.6rem; font-family: var(--display); font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; }
-    .skills li i { color: var(--accent); font-size: 1.05rem; }
+    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .skill { padding: 1.6rem; transition: border-color 0.25s, background 0.25s, transform 0.25s; }
+    .skill:hover { border-color: var(--line-h); background: var(--card-h); transform: translateY(-3px); }
+    .skill h3 { font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-bottom: 1.1rem; }
+    .skill ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .skill li { display: flex; align-items: center; gap: 0.75rem; font-size: 1.1rem; font-weight: 700; color: var(--heading); }
+    .skill li i {
+      display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; font-size: 1rem;
+      background: rgba(139, 124, 255, 0.12); color: var(--a1);
+    }
 
     /* Certificates */
-    .cert-group + .cert-group { margin-top: 2rem; }
-    .cert-group h3 { font-size: 0.9rem; font-weight: 500; color: var(--muted); margin-bottom: 0.5rem; }
-    .certs { list-style: none; border-top: 1px solid var(--ink); }
-    .certs a {
-      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-      padding: 0.95rem 0.25rem; border-bottom: 1px solid var(--line);
-      font-weight: 500; transition: background 0.15s, padding 0.15s, color 0.15s;
+    .cert-group + .cert-group { margin-top: 2.25rem; }
+    .cert-title { display: flex; align-items: center; gap: 0.6rem; font-size: 1rem; font-weight: 700; color: var(--heading); margin-bottom: 0.9rem; }
+    .cert-title span { font-size: 0.72rem; font-weight: 600; color: var(--muted); padding: 0.1rem 0.55rem; border: 1px solid var(--line); border-radius: 999px; }
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0.85rem; }
+    .cert {
+      display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 1.05rem 1.2rem;
+      font-weight: 600; font-size: 0.92rem; color: var(--heading); border-radius: 16px;
+      transition: border-color 0.25s, background 0.25s, transform 0.25s;
     }
-    .certs a i { color: var(--muted); transition: color 0.15s, transform 0.15s; }
-    .certs a:hover { background: var(--panel); padding-left: 0.75rem; color: var(--accent); }
-    .certs a:hover i { color: var(--accent); transform: translate(2px, -2px); }
+    .cert i { color: var(--muted); transition: color 0.2s, transform 0.2s; }
+    .cert:hover { border-color: var(--line-h); background: var(--card-h); transform: translateY(-3px); }
+    .cert:hover i { color: var(--a2); transform: translate(2px, -2px); }
 
-    footer { margin-top: 4.5rem; color: var(--muted); font-size: 0.8rem; }
+    /* Contact + footer */
+    .contact-card { padding: clamp(1.75rem, 5vw, 3rem); text-align: center; }
+    .contact-card h2 { margin-bottom: 0.6rem; }
+    .contact-card p { color: var(--muted); }
+    .contact-card .cta { justify-content: center; }
+    footer { padding: 2rem 0 3rem; text-align: center; font-size: 0.78rem; color: var(--muted); }
 
-    /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .page { grid-template-columns: 1fr; gap: 0; padding: 0 1.25rem; }
-      .identity { position: static; height: auto; padding: 3rem 0 2rem; gap: 2rem; }
-      .identity small { display: none; }
-      main { padding-top: 2rem; }
-    }
-    @media (max-width: 640px) {
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 760px) {
       .skills { grid-template-columns: 1fr; }
-      .skills > div + div { border-left: 0; border-top: 1px solid var(--line); }
+      nav a { padding: 0.45rem 0.8rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
       * { transition: none !important; }
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
+  <div class="glow" aria-hidden="true"></div>
 
-    <header class="identity">
-      <div>
-        <h1>Diyorbek <span>Qodirboyev</span></h1>
-        <p class="role">Web developer building with Python and Flask.</p>
-        <div class="contact">
-          <a href="mailto:kodirboev@proton.me"><i class="bi bi-envelope" aria-hidden="true"></i> kodirboev@proton.me</a>
-          <a href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i> github.com/dvrone</a>
-        </div>
+  <nav aria-label="Main">
+    <a href="#skills">Skills</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <header class="container hero">
+    <div>
+      <span class="pill">Web Developer</span>
+      <h1>Diyorbek<br /><span class="grad">Qodirboyev</span></h1>
+      <p class="sub">Building web apps with Python and Flask.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="mailto:kodirboev@proton.me"><i class="bi bi-envelope" aria-hidden="true"></i> Get in touch</a>
+        <a class="btn btn-ghost" href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a>
       </div>
-      <small>&copy; <span id="year"></span> Diyorbek Qodirboyev</small>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <section class="block" id="skills">
-        <h2>Skills</h2>
-        <p class="lead">What I use day to day.</p>
+  <main>
+    <section id="skills">
+      <div class="container">
+        <div class="sec-head reveal">
+          <h2>Skills</h2>
+          <p>What I use day to day.</p>
+        </div>
         <div class="skills">
-          <div>
+          <div class="card skill reveal">
             <h3>Language</h3>
             <ul><li><i class="bi bi-braces" aria-hidden="true"></i> Python</li></ul>
           </div>
-          <div>
+          <div class="card skill reveal">
             <h3>Framework</h3>
             <ul><li><i class="bi bi-layers" aria-hidden="true"></i> Flask</li></ul>
           </div>
-          <div>
+          <div class="card skill reveal">
             <h3>Tools</h3>
             <ul>
               <li><i class="bi bi-terminal" aria-hidden="true"></i> Linux</li>
@@ -158,49 +197,76 @@
             </ul>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="block" id="certificates">
-        <h2>Certificates</h2>
-        <p class="lead">11 courses completed on SoloLearn. Each one opens its certificate.</p>
-
-        <div class="cert-group">
-          <h3>Web</h3>
-          <ul class="certs">
-            <li><a href="https://www.sololearn.com/certificates/CC-1PQBJBBJ" target="_blank" rel="noopener noreferrer">HTML <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.sololearn.com/certificates/CC-UDZZTQKR" target="_blank" rel="noopener noreferrer">CSS <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.sololearn.com/certificates/CC-YOBGLOPK" target="_blank" rel="noopener noreferrer">JavaScript <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.sololearn.com/certificates/CC-42JDPEAJ" target="_blank" rel="noopener noreferrer">Web Development <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
-          </ul>
+    <section id="certificates">
+      <div class="container">
+        <div class="sec-head reveal">
+          <h2>Certificates</h2>
+          <p>11 courses completed on SoloLearn. Each card opens its certificate.</p>
         </div>
 
-        <div class="cert-group">
-          <h3>Python</h3>
-          <ul class="certs">
-            <li><a href="https://www.sololearn.com/certificates/CC-JTIHM0XZ" target="_blank" rel="noopener noreferrer">Introduction to Python <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.sololearn.com/certificates/CC-XYQZOWKC" target="_blank" rel="noopener noreferrer">Python Intermediate <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.sololearn.com/certificates/CC-EI3QTN6M" target="_blank" rel="noopener noreferrer">Python Developer <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
-          </ul>
+        <div class="cert-group reveal">
+          <div class="cert-title">Web <span>4</span></div>
+          <div class="cert-grid">
+            <a class="card cert" href="https://www.sololearn.com/certificates/CC-1PQBJBBJ" target="_blank" rel="noopener noreferrer">HTML <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="card cert" href="https://www.sololearn.com/certificates/CC-UDZZTQKR" target="_blank" rel="noopener noreferrer">CSS <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="card cert" href="https://www.sololearn.com/certificates/CC-YOBGLOPK" target="_blank" rel="noopener noreferrer">JavaScript <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="card cert" href="https://www.sololearn.com/certificates/CC-42JDPEAJ" target="_blank" rel="noopener noreferrer">Web Development <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
         </div>
 
-        <div class="cert-group">
-          <h3>AI and data</h3>
-          <ul class="certs">
-            <li><a href="https://www.sololearn.com/certificates/CC-3BS6UHDU" target="_blank" rel="noopener noreferrer">Meet Claude <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.sololearn.com/certificates/CC-OHANR0GY" target="_blank" rel="noopener noreferrer">Prompt Engineering <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.sololearn.com/certificates/CC-UQPUTDTB" target="_blank" rel="noopener noreferrer">Data Analytics with AI <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.sololearn.com/certificates/CC-4DLX6RXO" target="_blank" rel="noopener noreferrer">Tech for Everyone <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
-          </ul>
+        <div class="cert-group reveal">
+          <div class="cert-title">Python <span>3</span></div>
+          <div class="cert-grid">
+            <a class="card cert" href="https://www.sololearn.com/certificates/CC-JTIHM0XZ" target="_blank" rel="noopener noreferrer">Introduction to Python <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="card cert" href="https://www.sololearn.com/certificates/CC-XYQZOWKC" target="_blank" rel="noopener noreferrer">Python Intermediate <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="card cert" href="https://www.sololearn.com/certificates/CC-EI3QTN6M" target="_blank" rel="noopener noreferrer">Python Developer <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
         </div>
-      </section>
 
-      <footer>Built with HTML &amp; CSS</footer>
-    </main>
+        <div class="cert-group reveal">
+          <div class="cert-title">AI and data <span>4</span></div>
+          <div class="cert-grid">
+            <a class="card cert" href="https://www.sololearn.com/certificates/CC-3BS6UHDU" target="_blank" rel="noopener noreferrer">Meet Claude <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="card cert" href="https://www.sololearn.com/certificates/CC-OHANR0GY" target="_blank" rel="noopener noreferrer">Prompt Engineering <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="card cert" href="https://www.sololearn.com/certificates/CC-UQPUTDTB" target="_blank" rel="noopener noreferrer">Data Analytics with AI <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="card cert" href="https://www.sololearn.com/certificates/CC-4DLX6RXO" target="_blank" rel="noopener noreferrer">Tech for Everyone <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  </div>
+    <section id="contact">
+      <div class="container">
+        <div class="card contact-card reveal">
+          <h2>Let's build something</h2>
+          <p>Open to web development work and collaboration.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="mailto:kodirboev@proton.me"><i class="bi bi-envelope" aria-hidden="true"></i> kodirboev@proton.me</a>
+            <a class="btn btn-ghost" href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i> dvrone</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>&copy; <span id="year"></span> Diyorbek Qodirboyev</footer>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); }
+      }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll(".reveal").forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 3) * 0.08}s`;
+      observer.observe(el);
+    });
   </script>
 </body>
 
