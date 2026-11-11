@@ -1,185 +1,338 @@
-<!doctype html>
-<html lang="en" data-bs-theme="dark">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diyorbek Qodirboyev | Python Developer</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diyorbek Qodirboyev — Python Developer</title>
+<meta name="description" content="Portfolio of Diyorbek Qodirboyev, a Python developer building web applications and practical software solutions.">
+<meta name="author" content="Diyorbek Qodirboyev">
+<meta name="theme-color" content="#08080d">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Diyorbek Qodirboyev — Python Developer">
+<meta property="og:description" content="Building web applications and practical software solutions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08080d;
+  --violet:#6a4dff;
+  --blue:#0ea5e9;
+  --grad-a:#8b7cff;
+  --grad-b:#38bdf8;
+  --grad:linear-gradient(135deg,var(--grad-a),var(--grad-b));
+  --text:#aab0c0;
+  --heading:#f4f5fa;
+  --muted:#727890;
+  --glass:rgba(255,255,255,.04);
+  --glass-hover:rgba(255,255,255,.07);
+  --border:rgba(255,255,255,.09);
+  --border-hover:rgba(139,124,255,.55);
+  --radius:20px;
+  --pill:999px;
+  --font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--font);font-size:1rem;line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+body::before,body::after{
+  content:"";position:fixed;z-index:-1;border-radius:50%;
+  filter:blur(120px);pointer-events:none;
+}
+body::before{width:520px;height:520px;background:var(--violet);opacity:.28;top:-140px;left:-120px}
+body::after{width:480px;height:480px;background:var(--blue);opacity:.2;bottom:-140px;right:-120px}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--grad-a);outline-offset:3px;border-radius:8px}
+h1,h2,h3{color:var(--heading);letter-spacing:-.04em;line-height:1.1;margin:0}
+p{margin:0 0 1rem}
+.icon{width:1em;height:1em;flex:none}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.5rem}
+section{scroll-margin-top:5.5rem}
+.section{padding:3.5rem 0}
+.section>.wrap>h2{font-size:clamp(1.6rem,3vw,2.1rem);margin-bottom:1.5rem}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-  <meta name="description"
-    content="Diyorbek Qodirboyev: Python developer building web applications and practical software with Flask, FastAPI and Django." />
-  <meta name="author" content="Diyorbek Qodirboyev" />
-  <meta property="og:title" content="Diyorbek Qodirboyev | Python Developer" />
-  <meta property="og:description" content="Python developer. Web applications and practical software solutions." />
-  <meta property="og:type" content="website" />
+/* nav */
+.nav{
+  position:fixed;top:1rem;left:50%;transform:translateX(-50%);z-index:50;
+  background:rgba(14,14,22,.6);border:1px solid var(--border);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-radius:var(--pill);padding:.35rem;
+  max-width:calc(100% - 1rem);
+}
+.nav ul{display:flex;gap:.15rem;list-style:none;margin:0;padding:0}
+.nav a{
+  display:block;padding:.45rem 1rem;border-radius:var(--pill);
+  font-size:.88rem;font-weight:600;color:var(--text);
+  transition:color .2s,background .2s;white-space:nowrap;
+}
+.nav a:hover{color:var(--heading);background:rgba(255,255,255,.07)}
 
-  <link rel="icon" href="favicon.ico" sizes="any" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+/* glass */
+.glass{
+  background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  transition:transform .25s ease,border-color .25s ease,background .25s ease;
+}
+a.glass:hover,.glass.lift:hover{transform:translateY(-3px);border-color:var(--border-hover);background:var(--glass-hover)}
+
+/* buttons / tags */
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.5rem;
+  border-radius:var(--pill);font:inherit;font-weight:700;font-size:.95rem;
+  border:1px solid var(--border);color:var(--heading);
+  transition:transform .25s ease,border-color .25s ease,background .25s ease,box-shadow .25s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--grad);border-color:transparent;color:#07070c;box-shadow:0 8px 30px rgba(106,77,255,.3)}
+.btn-outline{background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.btn-outline:hover{border-color:var(--border-hover);background:var(--glass-hover)}
+.tag{
+  display:inline-block;padding:.3rem .9rem;border-radius:var(--pill);
+  background:var(--glass);border:1px solid var(--border);
+  font-size:.82rem;font-weight:600;color:var(--text);
+}
+
+/* hero */
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:6rem 0 3rem}
+.hero .tag{color:var(--grad-a);border-color:rgba(139,124,255,.3);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(3rem,10vw,6.5rem);font-weight:800;line-height:1}
+.hero h1 span{display:block}
+.hero p.lead{font-size:clamp(1.05rem,2vw,1.3rem);max-width:34rem;margin:1.5rem 0 2rem;color:var(--text)}
+.actions{display:flex;flex-wrap:wrap;gap:.8rem}
+
+/* about */
+.about{padding:2rem}
+.about p:last-child{margin-bottom:0}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
+.chip{
+  padding:.45rem 1.1rem;border-radius:var(--pill);font-size:.9rem;font-weight:600;color:var(--heading);
+  background:var(--glass);border:1px solid var(--border);
+  transition:transform .2s ease,border-color .2s ease;
+}
+.chip:hover{transform:translateY(-3px);border-color:var(--border-hover)}
+.chip.violet{background:rgba(106,77,255,.14);border-color:rgba(139,124,255,.35);color:#c9c1ff}
+
+/* projects */
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+.project{display:flex;flex-direction:column;gap:.6rem;padding:1.6rem;min-height:150px}
+.project h3{font-size:1.2rem}
+.project p{margin:0;font-size:.95rem;color:var(--text)}
+.meta{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.8rem;font-size:.8rem;font-weight:600;color:var(--muted)}
+.meta .icon{width:1.2rem;height:1.2rem;color:var(--grad-a)}
+
+/* certs */
+.cert-group+.cert-group{margin-top:2rem}
+.cert-group h3{display:flex;align-items:center;gap:.6rem;font-size:1.1rem;margin-bottom:1rem}
+.badge{
+  font-size:.75rem;font-weight:700;padding:.1rem .6rem;border-radius:var(--pill);
+  background:rgba(106,77,255,.18);color:#c9c1ff;letter-spacing:0;
+}
+.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
+.cert{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:1.1rem 1.3rem;color:var(--heading);font-weight:600}
+.cert .icon{color:var(--muted);transition:transform .25s ease,color .25s ease}
+.cert:hover .icon{transform:translate(3px,-3px);color:var(--grad-a)}
+
+/* contact */
+.contact{padding:3rem 1.5rem;text-align:center}
+.contact h2{margin-bottom:.8rem}
+.contact p{margin-bottom:1.6rem}
+.contact .actions{justify-content:center}
+
+footer{padding:2.5rem 0;text-align:center;color:var(--muted);font-size:.88rem}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:760px){
+  .projects{grid-template-columns:1fr}
+  .nav a{padding:.4rem .6rem;font-size:.75rem}
+  .about{padding:1.5rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
 </head>
-
 <body>
 
-  <!-- Nav -->
-  <header class="sticky-top pt-3">
-    <div class="container">
-      <nav class="card card-translucent" aria-label="Main">
-        <ul class="nav nav-pills justify-content-center p-2 mb-0">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<header>
+  <nav class="nav" aria-label="Main navigation">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <!-- Hero -->
-  <section class="container py-5 my-5 text-center">
-    <span class="badge badge-subtle theme-primary">Python Developer</span>
-    <h1 class="display-2 fw-bold mt-3">Diyorbek Qodirboyev</h1>
-    <p class="lead fg-2 mb-4">Building web applications and practical software solutions.</p>
-    <div class="d-flex flex-wrap justify-content-center gap-2">
-      <a class="btn-solid theme-primary btn-lg" href="mailto:kodirboev@proton.me"><i class="bi bi-envelope" aria-hidden="true"></i> Get in touch</a>
-      <a class="btn-outline theme-secondary btn-lg" href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a>
+<main>
+  <section class="hero" id="top">
+    <div class="wrap">
+      <span class="tag reveal">Python Developer</span>
+      <h1 class="reveal" style="--d:.08s"><span>Diyorbek</span><span class="grad-text">Qodirboyev</span></h1>
+      <p class="lead reveal" style="--d:.16s">Building web applications and practical software solutions.</p>
+      <div class="actions reveal" style="--d:.24s">
+        <a class="btn btn-primary" href="mailto:kodirboev@proton.me">
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          Get in touch
+        </a>
+        <a class="btn btn-outline" href="https://github.com/dvrone">
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.76 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+          GitHub
+        </a>
+      </div>
     </div>
   </section>
 
-  <main>
-    <!-- About -->
-    <section class="container py-5" id="about">
-      <h2 class="mb-4">About me</h2>
-      <div class="card card-body">
-        <p class="card-text">I'm a Python Developer focused on building web applications and practical software solutions. I primarily work with Python and its ecosystem, including FastAPI, Flask, and Django. I also have experience with JavaScript, HTML, and CSS.</p>
-        <p class="card-text">I'm interested in software development, artificial intelligence, and exploring new technologies. I enjoy learning through hands-on projects and continuously improving my programming skills.</p>
+  <section class="section" id="about">
+    <div class="wrap">
+      <h2 class="reveal">About me</h2>
+      <div class="glass about reveal" style="--d:.08s">
+        <p>I'm a Python Developer focused on building web applications and practical software solutions. I primarily work with Python and its ecosystem, including FastAPI, Flask, and Django. I also have experience with JavaScript, HTML, and CSS.</p>
+        <p>I'm interested in software development, artificial intelligence, and exploring new technologies. I enjoy learning through hands-on projects and continuously improving my programming skills.</p>
       </div>
-    </section>
+      <h2 class="reveal" style="margin:2.5rem 0 0;font-size:1.3rem">Technologies</h2>
+      <ul class="chips reveal" style="list-style:none;padding:0" aria-label="Technologies">
+        <li class="chip">Python</li><li class="chip">JavaScript</li><li class="chip">HTML5</li><li class="chip">CSS3</li>
+        <li class="chip">FastAPI</li><li class="chip">Flask</li><li class="chip">Django</li><li class="chip">Aiogram</li>
+        <li class="chip">SQLite</li><li class="chip">Git</li><li class="chip">GitHub</li><li class="chip">Linux</li>
+      </ul>
+    </div>
+  </section>
 
-    <!-- Technologies -->
-    <section class="container py-5" id="technologies">
-      <h2 class="mb-4">Technologies</h2>
-      <div class="d-flex flex-wrap gap-2">
-        <span class="badge badge-subtle theme-primary rounded-pill">Python</span>
-        <span class="badge badge-subtle theme-primary rounded-pill">JavaScript</span>
-        <span class="badge badge-subtle theme-primary rounded-pill">HTML5</span>
-        <span class="badge badge-subtle theme-primary rounded-pill">CSS3</span>
-        <span class="badge badge-subtle theme-primary rounded-pill">FastAPI</span>
-        <span class="badge badge-subtle theme-primary rounded-pill">Flask</span>
-        <span class="badge badge-subtle theme-primary rounded-pill">Django</span>
-        <span class="badge badge-subtle theme-primary rounded-pill">Aiogram</span>
-        <span class="badge badge-subtle theme-primary rounded-pill">SQLite</span>
-        <span class="badge badge-subtle theme-primary rounded-pill">Git</span>
-        <span class="badge badge-subtle theme-primary rounded-pill">GitHub</span>
-        <span class="badge badge-subtle theme-primary rounded-pill">Linux</span>
+  <section class="section" id="projects">
+    <div class="wrap">
+      <h2 class="reveal">Projects</h2>
+      <div class="projects">
+        <a class="glass project reveal" href="https://github.com/dvrone/mindscope" target="_blank" rel="noopener noreferrer">
+          <h3>MindScope</h3>
+          <p>Telegram bot for MBTI, IQ and EQ tests, built with Python and Aiogram.</p>
+          <span class="meta">GitHub <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </a>
+        <a class="glass project reveal" style="--d:.08s" href="https://pro-roulette.netlify.app/" target="_blank" rel="noopener noreferrer">
+          <h3>Procrastination Roulette</h3>
+          <span class="meta">Live site <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </a>
+        <a class="glass project reveal" href="https://github.com/dvrone/excel-datasheet-viewer" target="_blank" rel="noopener noreferrer">
+          <h3>Excel Datasheet Viewer</h3>
+          <span class="meta">GitHub <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </a>
+        <a class="glass project reveal" style="--d:.08s" href="https://terminal-quest.netlify.app/" target="_blank" rel="noopener noreferrer">
+          <h3>terminal-quest</h3>
+          <p>Do you want to learn Linux by playing games?</p>
+          <span class="meta">Live site <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Projects -->
-    <section class="container py-5" id="projects">
-      <h2 class="mb-4">Projects</h2>
-      <div class="row row-cols-1 md:row-cols-2 g-4">
+  <section class="section" id="certifications">
+    <div class="wrap">
+      <h2 class="reveal">Certifications</h2>
 
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-body">
-              <h3 class="card-title h4">MindScope</h3>
-              <p class="card-text fg-2">Telegram bot for MBTI, IQ and EQ tests, built with Python and Aiogram.</p>
-              <a class="btn-outline theme-primary btn-sm mt-auto align-self-start" href="https://github.com/dvrone/mindscope" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-body">
-              <h3 class="card-title h4">Procrastination Roulette</h3>
-              <a class="btn-outline theme-primary btn-sm mt-auto align-self-start" href="https://pro-roulette.netlify.app/" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Live site</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-body">
-              <h3 class="card-title h4">Excel Datasheet Viewer</h3>
-              <a class="btn-outline theme-primary btn-sm mt-auto align-self-start" href="https://github.com/dvrone/excel-datasheet-viewer" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-body">
-              <h3 class="card-title h4">terminal-quest</h3>
-              <p class="card-text fg-2">Do you want to learn Linux by playing games?</p>
-              <a class="btn-outline theme-primary btn-sm mt-auto align-self-start" href="https://terminal-quest.netlify.app/" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Live site</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Certifications -->
-    <section class="container py-5" id="certifications">
-      <h2>Certifications</h2>
-      <p class="fg-2 mb-4">11 courses completed on SoloLearn. Each button opens its certificate.</p>
-
-      <h3 class="h5 mb-3">Python <span class="badge badge-outline theme-secondary">3</span></h3>
-      <div class="row row-cols-1 sm:row-cols-2 md:row-cols-3 g-3 mb-5">
-        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-EI3QTN6M" target="_blank" rel="noopener noreferrer">Python Developer <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
-        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-JTIHM0XZ" target="_blank" rel="noopener noreferrer">Introduction to Python <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
-        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-XYQZOWKC" target="_blank" rel="noopener noreferrer">Python Intermediate <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
-      </div>
-
-      <h3 class="h5 mb-3">Web <span class="badge badge-outline theme-secondary">4</span></h3>
-      <div class="row row-cols-1 sm:row-cols-2 md:row-cols-3 g-3 mb-5">
-        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-1PQBJBBJ" target="_blank" rel="noopener noreferrer">HTML <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
-        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-UDZZTQKR" target="_blank" rel="noopener noreferrer">CSS <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
-        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-YOBGLOPK" target="_blank" rel="noopener noreferrer">JavaScript <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
-        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-42JDPEAJ" target="_blank" rel="noopener noreferrer">Web Development <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
-      </div>
-
-      <h3 class="h5 mb-3">AI and data <span class="badge badge-outline theme-secondary">4</span></h3>
-      <div class="row row-cols-1 sm:row-cols-2 md:row-cols-3 g-3">
-        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-3BS6UHDU" target="_blank" rel="noopener noreferrer">Meet Claude <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
-        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-OHANR0GY" target="_blank" rel="noopener noreferrer">Prompt Engineering <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
-        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-UQPUTDTB" target="_blank" rel="noopener noreferrer">Data Analytics with AI <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
-        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-4DLX6RXO" target="_blank" rel="noopener noreferrer">Tech for Everyone <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
-      </div>
-    </section>
-
-    <!-- Currently learning -->
-    <section class="container py-5" id="learning">
-      <h2 class="mb-4">Currently learning</h2>
-      <div class="d-flex flex-wrap gap-2">
-        <span class="badge badge-outline theme-accent rounded-pill">Artificial Intelligence</span>
-        <span class="badge badge-outline theme-accent rounded-pill">Python development</span>
-        <span class="badge badge-outline theme-accent rounded-pill">Software engineering</span>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="container py-5" id="contact">
-      <div class="card card-body text-center py-5">
-        <h2 class="card-title">Get in touch</h2>
-        <p class="card-text fg-2">Open to web development work and collaboration.</p>
-        <div class="d-flex flex-wrap justify-content-center gap-2">
-          <a class="btn-solid theme-primary" href="mailto:kodirboev@proton.me"><i class="bi bi-envelope" aria-hidden="true"></i> kodirboev@proton.me</a>
-          <a class="btn-outline theme-secondary" href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i> dvrone</a>
+      <div class="cert-group reveal">
+        <h3>Python <span class="badge">3</span></h3>
+        <div class="certs">
+          <a class="glass cert" href="https://www.sololearn.com/certificates/CC-EI3QTN6M" target="_blank" rel="noopener noreferrer">Python Developer <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="glass cert" href="https://www.sololearn.com/certificates/CC-JTIHM0XZ" target="_blank" rel="noopener noreferrer">Introduction to Python <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="glass cert" href="https://www.sololearn.com/certificates/CC-XYQZOWKC" target="_blank" rel="noopener noreferrer">Python Intermediate <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
         </div>
       </div>
-    </section>
-  </main>
 
-  <footer class="container py-4 text-center fg-3">
-    <small>&copy; <span id="year"></span> Diyorbek Qodirboyev</small>
-  </footer>
+      <div class="cert-group reveal">
+        <h3>Web <span class="badge">4</span></h3>
+        <div class="certs">
+          <a class="glass cert" href="https://www.sololearn.com/certificates/CC-1PQBJBBJ" target="_blank" rel="noopener noreferrer">HTML <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="glass cert" href="https://www.sololearn.com/certificates/CC-UDZZTQKR" target="_blank" rel="noopener noreferrer">CSS <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="glass cert" href="https://www.sololearn.com/certificates/CC-YOBGLOPK" target="_blank" rel="noopener noreferrer">JavaScript <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="glass cert" href="https://www.sololearn.com/certificates/CC-42JDPEAJ" target="_blank" rel="noopener noreferrer">Web Development <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </div>
 
-  <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+      <div class="cert-group reveal">
+        <h3>AI and data <span class="badge">4</span></h3>
+        <div class="certs">
+          <a class="glass cert" href="https://www.sololearn.com/certificates/CC-3BS6UHDU" target="_blank" rel="noopener noreferrer">Meet Claude <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="glass cert" href="https://www.sololearn.com/certificates/CC-OHANR0GY" target="_blank" rel="noopener noreferrer">Prompt Engineering <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="glass cert" href="https://www.sololearn.com/certificates/CC-UQPUTDTB" target="_blank" rel="noopener noreferrer">Data Analytics with AI <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="glass cert" href="https://www.sololearn.com/certificates/CC-4DLX6RXO" target="_blank" rel="noopener noreferrer">Tech for Everyone <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="learning">
+    <div class="wrap">
+      <h2 class="reveal">Currently learning</h2>
+      <ul class="chips reveal" style="list-style:none;padding:0;margin-top:0">
+        <li class="chip violet">Artificial Intelligence</li>
+        <li class="chip violet">Python development</li>
+        <li class="chip violet">Software engineering</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="glass contact reveal">
+        <h2>Get in touch</h2>
+        <p>Open to web development work and collaboration.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="mailto:kodirboev@proton.me">
+            <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            kodirboev@proton.me
+          </a>
+          <a class="btn btn-outline" href="https://github.com/dvrone">
+            <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.76 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+            dvrone
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><p id="copy">© Diyorbek Qodirboyev</p></div>
+</footer>
+
+<script>
+(function () {
+  var year = new Date().getFullYear();
+  document.getElementById("copy").textContent = "\u00A9 " + year + " Diyorbek Qodirboyev";
+
+  var items = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window) ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    items.forEach(function (el) { el.classList.add("in"); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  // small staggered delay for siblings that don't set their own
+  document.querySelectorAll(".projects, .certs").forEach(function (group) {
+    group.querySelectorAll(".reveal").forEach(function (el, i) {
+      if (!el.style.getPropertyValue("--d")) el.style.setProperty("--d", (i % 4) * 0.07 + "s");
+    });
+  });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>
 </body>
-
 </html>
