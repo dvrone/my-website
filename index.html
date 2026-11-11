@@ -1,272 +1,184 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diyorbek Qodirboyev | Web Developer</title>
+  <title>Diyorbek Qodirboyev | Python Developer</title>
 
-  <meta name="description" content="Diyorbek Qodirboyev: web developer building with Python and Flask." />
+  <meta name="description"
+    content="Diyorbek Qodirboyev: Python developer building web applications and practical software with Flask, FastAPI and Django." />
   <meta name="author" content="Diyorbek Qodirboyev" />
-  <meta property="og:title" content="Diyorbek Qodirboyev | Web Developer" />
-  <meta property="og:description" content="Web developer. Python and Flask." />
+  <meta property="og:title" content="Diyorbek Qodirboyev | Python Developer" />
+  <meta property="og:description" content="Python developer. Web applications and practical software solutions." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#08080d" />
 
   <link rel="icon" href="favicon.ico" sizes="any" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
-
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
-
-    :root {
-      --bg: #08080d;
-      --card: rgba(255, 255, 255, 0.04);
-      --card-h: rgba(255, 255, 255, 0.07);
-      --line: rgba(255, 255, 255, 0.09);
-      --line-h: rgba(139, 124, 255, 0.55);
-      --text: #aab0c0;
-      --heading: #f4f5fa;
-      --muted: #727890;
-      --a1: #8b7cff;
-      --a2: #38bdf8;
-      --grad: linear-gradient(135deg, var(--a1), var(--a2));
-      --radius: 20px;
-      --page: 1040px;
-      --font: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-    }
-
-    body {
-      font-family: var(--font); background: var(--bg); color: var(--text);
-      line-height: 1.65; overflow-x: hidden; -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-    ::selection { background: var(--a1); color: #fff; }
-    a:focus-visible { outline: 2px solid var(--a2); outline-offset: 3px; }
-
-    /* Ambient glow */
-    .glow { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-    .glow::before, .glow::after { content: ""; position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0.35; }
-    .glow::before { width: 560px; height: 560px; background: #6a4dff; top: -180px; left: -140px; }
-    .glow::after { width: 480px; height: 480px; background: #0ea5e9; bottom: -160px; right: -120px; opacity: 0.25; }
-
-    .container { max-width: var(--page); margin: 0 auto; padding: 0 1.5rem; }
-
-    /* Floating nav */
-    nav {
-      position: fixed; top: 1rem; left: 50%; transform: translateX(-50%); z-index: 50;
-      display: flex; align-items: center; gap: 0.25rem; padding: 0.4rem;
-      background: rgba(14, 14, 22, 0.7); border: 1px solid var(--line); border-radius: 999px;
-      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    }
-    nav a { font-size: 0.82rem; font-weight: 500; color: var(--text); padding: 0.45rem 1rem; border-radius: 999px; transition: background 0.2s, color 0.2s; }
-    nav a:hover { background: var(--card-h); color: var(--heading); }
-
-    /* Hero */
-    .hero { min-height: 100dvh; display: flex; align-items: center; padding: 6rem 0 4rem; }
-    .pill {
-      display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; color: var(--heading);
-      padding: 0.4rem 0.9rem; border: 1px solid var(--line); border-radius: 999px; background: var(--card);
-    }
-    .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--grad); }
-    h1 {
-      margin-top: 1.5rem; font-size: clamp(2.8rem, 9vw, 5.6rem); font-weight: 800; line-height: 1.02;
-      letter-spacing: -0.045em; color: var(--heading);
-    }
-    h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .hero p.sub { margin-top: 1.5rem; font-size: clamp(1.05rem, 2.4vw, 1.3rem); max-width: 34ch; color: var(--text); }
-    .cta { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.4rem; border-radius: 999px;
-      font-size: 0.9rem; font-weight: 600; transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
-    }
-    .btn:active { transform: scale(0.97); }
-    .btn-primary { background: var(--grad); color: #0a0a12; box-shadow: 0 8px 30px -8px rgba(139, 124, 255, 0.6); }
-    .btn-primary:hover { box-shadow: 0 10px 38px -6px rgba(139, 124, 255, 0.85); }
-    .btn-ghost { border: 1px solid var(--line); background: var(--card); color: var(--heading); }
-    .btn-ghost:hover { background: var(--card-h); }
-
-    /* Sections */
-    section { padding: 4.5rem 0; }
-    .sec-head { margin-bottom: 2rem; }
-    h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 800; letter-spacing: -0.035em; color: var(--heading); }
-    .sec-head p { margin-top: 0.4rem; color: var(--muted); }
-
-    .card {
-      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    }
-
-    /* Skills */
-    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .skill { padding: 1.6rem; transition: border-color 0.25s, background 0.25s, transform 0.25s; }
-    .skill:hover { border-color: var(--line-h); background: var(--card-h); transform: translateY(-3px); }
-    .skill h3 { font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-bottom: 1.1rem; }
-    .skill ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
-    .skill li { display: flex; align-items: center; gap: 0.75rem; font-size: 1.1rem; font-weight: 700; color: var(--heading); }
-    .skill li i {
-      display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; font-size: 1rem;
-      background: rgba(139, 124, 255, 0.12); color: var(--a1);
-    }
-
-    /* Certificates */
-    .cert-group + .cert-group { margin-top: 2.25rem; }
-    .cert-title { display: flex; align-items: center; gap: 0.6rem; font-size: 1rem; font-weight: 700; color: var(--heading); margin-bottom: 0.9rem; }
-    .cert-title span { font-size: 0.72rem; font-weight: 600; color: var(--muted); padding: 0.1rem 0.55rem; border: 1px solid var(--line); border-radius: 999px; }
-    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0.85rem; }
-    .cert {
-      display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 1.05rem 1.2rem;
-      font-weight: 600; font-size: 0.92rem; color: var(--heading); border-radius: 16px;
-      transition: border-color 0.25s, background 0.25s, transform 0.25s;
-    }
-    .cert i { color: var(--muted); transition: color 0.2s, transform 0.2s; }
-    .cert:hover { border-color: var(--line-h); background: var(--card-h); transform: translateY(-3px); }
-    .cert:hover i { color: var(--a2); transform: translate(2px, -2px); }
-
-    /* Contact + footer */
-    .contact-card { padding: clamp(1.75rem, 5vw, 3rem); text-align: center; }
-    .contact-card h2 { margin-bottom: 0.6rem; }
-    .contact-card p { color: var(--muted); }
-    .contact-card .cta { justify-content: center; }
-    footer { padding: 2rem 0 3rem; text-align: center; font-size: 0.78rem; color: var(--muted); }
-
-    /* Reveal */
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-
-    @media (max-width: 760px) {
-      .skills { grid-template-columns: 1fr; }
-      nav a { padding: 0.45rem 0.8rem; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .reveal { opacity: 1; transform: none; transition: none; }
-      * { transition: none !important; }
-    }
-  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
 </head>
 
 <body>
-  <div class="glow" aria-hidden="true"></div>
 
-  <nav aria-label="Main">
-    <a href="#skills">Skills</a>
-    <a href="#certificates">Certificates</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <header class="container hero">
-    <div>
-      <span class="pill">Web Developer</span>
-      <h1>Diyorbek<br /><span class="grad">Qodirboyev</span></h1>
-      <p class="sub">Building web apps with Python and Flask.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="mailto:kodirboev@proton.me"><i class="bi bi-envelope" aria-hidden="true"></i> Get in touch</a>
-        <a class="btn btn-ghost" href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a>
-      </div>
+  <!-- Nav -->
+  <header class="sticky-top pt-3">
+    <div class="container">
+      <nav class="card card-translucent" aria-label="Main">
+        <ul class="nav nav-pills justify-content-center p-2 mb-0">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
+  <!-- Hero -->
+  <section class="container py-5 my-5 text-center">
+    <span class="badge badge-subtle theme-primary">Python Developer</span>
+    <h1 class="display-2 fw-bold mt-3">Diyorbek Qodirboyev</h1>
+    <p class="lead fg-2 mb-4">Building web applications and practical software solutions.</p>
+    <div class="d-flex flex-wrap justify-content-center gap-2">
+      <a class="btn-solid theme-primary btn-lg" href="mailto:kodirboev@proton.me"><i class="bi bi-envelope" aria-hidden="true"></i> Get in touch</a>
+      <a class="btn-outline theme-secondary btn-lg" href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a>
+    </div>
+  </section>
+
   <main>
-    <section id="skills">
-      <div class="container">
-        <div class="sec-head reveal">
-          <h2>Skills</h2>
-          <p>What I use day to day.</p>
-        </div>
-        <div class="skills">
-          <div class="card skill reveal">
-            <h3>Language</h3>
-            <ul><li><i class="bi bi-braces" aria-hidden="true"></i> Python</li></ul>
-          </div>
-          <div class="card skill reveal">
-            <h3>Framework</h3>
-            <ul><li><i class="bi bi-layers" aria-hidden="true"></i> Flask</li></ul>
-          </div>
-          <div class="card skill reveal">
-            <h3>Tools</h3>
-            <ul>
-              <li><i class="bi bi-terminal" aria-hidden="true"></i> Linux</li>
-              <li><i class="bi bi-git" aria-hidden="true"></i> Git</li>
-              <li><i class="bi bi-code-slash" aria-hidden="true"></i> Neovim</li>
-            </ul>
-          </div>
-        </div>
+    <!-- About -->
+    <section class="container py-5" id="about">
+      <h2 class="mb-4">About me</h2>
+      <div class="card card-body">
+        <p class="card-text">I'm a Python Developer focused on building web applications and practical software solutions. I primarily work with Python and its ecosystem, including FastAPI, Flask, and Django. I also have experience with JavaScript, HTML, and CSS.</p>
+        <p class="card-text">I'm interested in software development, artificial intelligence, and exploring new technologies. I enjoy learning through hands-on projects and continuously improving my programming skills.</p>
       </div>
     </section>
 
-    <section id="certificates">
-      <div class="container">
-        <div class="sec-head reveal">
-          <h2>Certificates</h2>
-          <p>11 courses completed on SoloLearn. Each card opens its certificate.</p>
-        </div>
-
-        <div class="cert-group reveal">
-          <div class="cert-title">Web <span>4</span></div>
-          <div class="cert-grid">
-            <a class="card cert" href="https://www.sololearn.com/certificates/CC-1PQBJBBJ" target="_blank" rel="noopener noreferrer">HTML <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
-            <a class="card cert" href="https://www.sololearn.com/certificates/CC-UDZZTQKR" target="_blank" rel="noopener noreferrer">CSS <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
-            <a class="card cert" href="https://www.sololearn.com/certificates/CC-YOBGLOPK" target="_blank" rel="noopener noreferrer">JavaScript <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
-            <a class="card cert" href="https://www.sololearn.com/certificates/CC-42JDPEAJ" target="_blank" rel="noopener noreferrer">Web Development <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
-          </div>
-        </div>
-
-        <div class="cert-group reveal">
-          <div class="cert-title">Python <span>3</span></div>
-          <div class="cert-grid">
-            <a class="card cert" href="https://www.sololearn.com/certificates/CC-JTIHM0XZ" target="_blank" rel="noopener noreferrer">Introduction to Python <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
-            <a class="card cert" href="https://www.sololearn.com/certificates/CC-XYQZOWKC" target="_blank" rel="noopener noreferrer">Python Intermediate <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
-            <a class="card cert" href="https://www.sololearn.com/certificates/CC-EI3QTN6M" target="_blank" rel="noopener noreferrer">Python Developer <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
-          </div>
-        </div>
-
-        <div class="cert-group reveal">
-          <div class="cert-title">AI and data <span>4</span></div>
-          <div class="cert-grid">
-            <a class="card cert" href="https://www.sololearn.com/certificates/CC-3BS6UHDU" target="_blank" rel="noopener noreferrer">Meet Claude <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
-            <a class="card cert" href="https://www.sololearn.com/certificates/CC-OHANR0GY" target="_blank" rel="noopener noreferrer">Prompt Engineering <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
-            <a class="card cert" href="https://www.sololearn.com/certificates/CC-UQPUTDTB" target="_blank" rel="noopener noreferrer">Data Analytics with AI <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
-            <a class="card cert" href="https://www.sololearn.com/certificates/CC-4DLX6RXO" target="_blank" rel="noopener noreferrer">Tech for Everyone <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
-          </div>
-        </div>
+    <!-- Technologies -->
+    <section class="container py-5" id="technologies">
+      <h2 class="mb-4">Technologies</h2>
+      <div class="d-flex flex-wrap gap-2">
+        <span class="badge badge-subtle theme-primary rounded-pill">Python</span>
+        <span class="badge badge-subtle theme-primary rounded-pill">JavaScript</span>
+        <span class="badge badge-subtle theme-primary rounded-pill">HTML5</span>
+        <span class="badge badge-subtle theme-primary rounded-pill">CSS3</span>
+        <span class="badge badge-subtle theme-primary rounded-pill">FastAPI</span>
+        <span class="badge badge-subtle theme-primary rounded-pill">Flask</span>
+        <span class="badge badge-subtle theme-primary rounded-pill">Django</span>
+        <span class="badge badge-subtle theme-primary rounded-pill">Aiogram</span>
+        <span class="badge badge-subtle theme-primary rounded-pill">SQLite</span>
+        <span class="badge badge-subtle theme-primary rounded-pill">Git</span>
+        <span class="badge badge-subtle theme-primary rounded-pill">GitHub</span>
+        <span class="badge badge-subtle theme-primary rounded-pill">Linux</span>
       </div>
     </section>
 
-    <section id="contact">
-      <div class="container">
-        <div class="card contact-card reveal">
-          <h2>Let's build something</h2>
-          <p>Open to web development work and collaboration.</p>
-          <div class="cta">
-            <a class="btn btn-primary" href="mailto:kodirboev@proton.me"><i class="bi bi-envelope" aria-hidden="true"></i> kodirboev@proton.me</a>
-            <a class="btn btn-ghost" href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i> dvrone</a>
+    <!-- Projects -->
+    <section class="container py-5" id="projects">
+      <h2 class="mb-4">Projects</h2>
+      <div class="row row-cols-1 md:row-cols-2 g-4">
+
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title h4">MindScope</h3>
+              <p class="card-text fg-2">Telegram bot for MBTI, IQ and EQ tests, built with Python and Aiogram.</p>
+              <a class="btn-outline theme-primary btn-sm mt-auto align-self-start" href="https://github.com/dvrone/mindscope" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a>
+            </div>
           </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title h4">Procrastination Roulette</h3>
+              <a class="btn-outline theme-primary btn-sm mt-auto align-self-start" href="https://pro-roulette.netlify.app/" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Live site</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title h4">Excel Datasheet Viewer</h3>
+              <a class="btn-outline theme-primary btn-sm mt-auto align-self-start" href="https://github.com/dvrone/excel-datasheet-viewer" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title h4">terminal-quest</h3>
+              <p class="card-text fg-2">Do you want to learn Linux by playing games?</p>
+              <a class="btn-outline theme-primary btn-sm mt-auto align-self-start" href="https://terminal-quest.netlify.app/" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Live site</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="container py-5" id="certifications">
+      <h2>Certifications</h2>
+      <p class="fg-2 mb-4">11 courses completed on SoloLearn. Each button opens its certificate.</p>
+
+      <h3 class="h5 mb-3">Python <span class="badge badge-outline theme-secondary">3</span></h3>
+      <div class="row row-cols-1 sm:row-cols-2 md:row-cols-3 g-3 mb-5">
+        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-EI3QTN6M" target="_blank" rel="noopener noreferrer">Python Developer <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
+        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-JTIHM0XZ" target="_blank" rel="noopener noreferrer">Introduction to Python <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
+        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-XYQZOWKC" target="_blank" rel="noopener noreferrer">Python Intermediate <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
+      </div>
+
+      <h3 class="h5 mb-3">Web <span class="badge badge-outline theme-secondary">4</span></h3>
+      <div class="row row-cols-1 sm:row-cols-2 md:row-cols-3 g-3 mb-5">
+        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-1PQBJBBJ" target="_blank" rel="noopener noreferrer">HTML <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
+        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-UDZZTQKR" target="_blank" rel="noopener noreferrer">CSS <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
+        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-YOBGLOPK" target="_blank" rel="noopener noreferrer">JavaScript <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
+        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-42JDPEAJ" target="_blank" rel="noopener noreferrer">Web Development <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
+      </div>
+
+      <h3 class="h5 mb-3">AI and data <span class="badge badge-outline theme-secondary">4</span></h3>
+      <div class="row row-cols-1 sm:row-cols-2 md:row-cols-3 g-3">
+        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-3BS6UHDU" target="_blank" rel="noopener noreferrer">Meet Claude <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
+        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-OHANR0GY" target="_blank" rel="noopener noreferrer">Prompt Engineering <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
+        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-UQPUTDTB" target="_blank" rel="noopener noreferrer">Data Analytics with AI <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
+        <div class="col"><a class="btn-subtle theme-primary w-100 d-flex justify-content-between" href="https://www.sololearn.com/certificates/CC-4DLX6RXO" target="_blank" rel="noopener noreferrer">Tech for Everyone <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div>
+      </div>
+    </section>
+
+    <!-- Currently learning -->
+    <section class="container py-5" id="learning">
+      <h2 class="mb-4">Currently learning</h2>
+      <div class="d-flex flex-wrap gap-2">
+        <span class="badge badge-outline theme-accent rounded-pill">Artificial Intelligence</span>
+        <span class="badge badge-outline theme-accent rounded-pill">Python development</span>
+        <span class="badge badge-outline theme-accent rounded-pill">Software engineering</span>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="container py-5" id="contact">
+      <div class="card card-body text-center py-5">
+        <h2 class="card-title">Get in touch</h2>
+        <p class="card-text fg-2">Open to web development work and collaboration.</p>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+          <a class="btn-solid theme-primary" href="mailto:kodirboev@proton.me"><i class="bi bi-envelope" aria-hidden="true"></i> kodirboev@proton.me</a>
+          <a class="btn-outline theme-secondary" href="https://github.com/dvrone" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i> dvrone</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>&copy; <span id="year"></span> Diyorbek Qodirboyev</footer>
+  <footer class="container py-4 text-center fg-3">
+    <small>&copy; <span id="year"></span> Diyorbek Qodirboyev</small>
+  </footer>
 
+  <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); }
-      }),
-      { threshold: 0.12 }
-    );
-    document.querySelectorAll(".reveal").forEach((el, i) => {
-      el.style.transitionDelay = `${(i % 3) * 0.08}s`;
-      observer.observe(el);
-    });
   </script>
 </body>
 
